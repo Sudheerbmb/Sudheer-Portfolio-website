@@ -46,30 +46,38 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      const result = await emailjs.send(
-        'service_7dj0cbe', // Your EmailJS service ID
-        'template_7onqixd', // Your EmailJS template ID
+      // 1. Send detailed notification to YOU (Admin)
+      await emailjs.send(
+        'service_7dj0cbe', 
+        'template_mqcankn', // Your new "Contact Us" template
         {
           name: values.name,
           email: values.email,
-          reply_to: values.email,
           title: values.subject,
-          subject: values.subject,
           message: values.message,
         },
-        'bhxViku3_mGqu7g9M' // Your EmailJS public key
+        'bhxViku3_mGqu7g9M'
+      );
+
+      // 2. Send nice Auto-Reply to the VISITOR
+      await emailjs.send(
+        'service_7dj0cbe', 
+        'template_7onqixd', // Your "Auto-Reply" template
+        {
+          name: values.name,
+          email: values.email,
+          title: values.subject,
+          message: values.message,
+        },
+        'bhxViku3_mGqu7g9M'
       );
       
-      if (result.text === 'OK') {
-        toast({
-          title: "Message Sent!",
-          description: "Thanks for reaching out. I'll get back to you soon.",
-          duration: 5000,
-        });
-        form.reset();
-      } else {
-        throw new Error('Failed to send message');
-      }
+      toast({
+        title: "Message Sent!",
+        description: "Thanks for reaching out. I've received your message and sent you a confirmation email.",
+        duration: 5000,
+      });
+      form.reset();
     } catch (error: any) {
       console.error('Error sending email:', error);
       toast({
