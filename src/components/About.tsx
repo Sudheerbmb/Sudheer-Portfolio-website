@@ -49,11 +49,17 @@ const About = () => {
           {/* Image */}
           <div className="w-full md:w-5/12">
             <div className="relative">
-              <div className="rounded-xl overflow-hidden neon-border bg-black/40 flex items-center justify-center min-h-[400px]">
+              <div className="rounded-xl overflow-hidden neon-border bg-black/20 flex items-center justify-center aspect-[4/5] relative">
+                {/* Blurred background for profile to fill container without cropping */}
+                <div 
+                  className="absolute inset-0 z-0 bg-cover bg-center blur-2xl opacity-50 scale-110"
+                  style={{ backgroundImage: `url(/IMG_20251208_205117.jpg)` }}
+                ></div>
+                
                 <img 
                   src="/IMG_20251208_205117.jpg"
                   alt="Sudheer Kumar Thati" 
-                  className="w-full h-auto max-h-[600px] object-contain rounded-xl transition-transform duration-700 hover:scale-105"
+                  className="relative z-10 max-w-full max-h-full object-contain rounded-xl transition-transform duration-700 hover:scale-105 shadow-2xl"
                 />
               </div>
 
