@@ -196,7 +196,7 @@ const Experience = () => {
                     <img
                       src={cert.certificateImage}
                       alt={`${cert.name} Certificate`}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-contain p-2"
                     />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                   </div>

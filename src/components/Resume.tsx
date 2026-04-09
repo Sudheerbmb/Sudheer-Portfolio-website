@@ -22,14 +22,6 @@ const Resume = ({ isOpen, onClose }: ResumeProps) => {
                 <span>Kadapa, Andhra Pradesh 516001</span>
               </div>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              className="absolute right-4 top-4"
-            >
-              <X className="h-4 w-4" />
-            </Button>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
