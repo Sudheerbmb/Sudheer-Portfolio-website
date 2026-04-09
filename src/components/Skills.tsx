@@ -14,6 +14,16 @@ const Skills = () => {
 
   const projects = [
     {
+      id: 15,
+      title: 'Insight — AI Interview Practice Partner',
+      skills: ['Python', 'Flask', 'Groq API', 'Redis', 'ChromaDB'],
+    },
+    {
+      id: 14,
+      title: 'AdmitGuard: AI Admissions Governance',
+      skills: ['Node.js', 'Express', 'React Native', 'Supabase', 'PostgreSQL', 'Groq', 'Socket.io'],
+    },
+    {
       id: 6,
       title: 'LexEcho:Audio Transcription and Summarization Web App',
       skills: ['Python', 'Flask', 'Whisper', 'Gemini API', 'FFmpeg', 'NLTK'],

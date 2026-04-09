@@ -10,6 +10,34 @@ const Projects = () => {
 
   const projects = [
     {
+      id: 15,
+      title: 'Insight — AI Interview Practice Partner',
+      description:
+        'Flask web app for role-based mock interviews powered by a multi-agent LLM loop (profiler + grader + interviewer + feedback) with live grading and coding round UI.',
+      category: 'AI/ML',
+      tags: ['Flask', 'Groq API', 'Multi-agent LLM', 'Python', 'Web Speech API', 'Redis', 'ChromaDB'],
+      image: '/insight.png',
+      timeframe: 'Apr 2025',
+      links: {
+        demo: '#',
+        github: 'https://github.com/Sudheerbmb/Interview_Agent',
+      },
+    },
+    {
+      id: 14,
+      title: 'AdmitGuard: AI Admissions Governance',
+      description:
+        'A distributed framework for high-integrity admissions, leveraging edge-validation, multi-stage AI reasoning, and latent semantic search to prevent identity spoofing.',
+      category: 'AI/ML',
+      tags: ['Node.js', 'Express', 'React Native', 'Supabase', 'PostgreSQL', 'Groq', 'Socket.io'],
+      image: '/placeholder.svg',
+      timeframe: 'Apr 2025',
+      links: {
+        demo: '#',
+        github: 'https://github.com/Sudheerbmb/AdmitGuard',
+      },
+    },
+    {
       id: 13,
       title: 'Education Institution UI Design',
       description:
