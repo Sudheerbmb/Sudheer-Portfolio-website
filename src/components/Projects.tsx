@@ -3,23 +3,25 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Github, ArrowRight, CalendarDays } from 'lucide-react';
 import { 
-  FaPython, FaJava, FaAws, FaDocker, FaNodeJs, FaReact, FaFigma, FaBrain, FaDatabase, FaGitAlt, FaMicrosoft
+  FaPython, FaJava, FaAws, FaDocker, FaNodeJs, FaReact, FaFigma, FaBrain, FaDatabase, FaGitAlt, FaMicrosoft, FaGoogle, FaExclamationTriangle, FaBolt, FaChartBar, FaCloud, FaStream
 } from 'react-icons/fa';
 import { 
   SiPostgresql, SiApacheairflow, SiSpringboot, SiFlask,
   SiFastapi, SiPytorch, SiTensorflow, SiOpencv, SiSpacy,
   SiPandas, SiScikitlearn, SiApache, SiMongodb,
-  SiSnowflake, SiDbt, SiApachekafka, SiPowerbi, SiRedis, SiSupabase, SiSocketdotio,
-  SiGooglecloud, SiSentry, SiTailwindcss, SiJavascript, SiTypescript
+  SiSnowflake, SiDbt, SiApachekafka, SiRedis, SiSupabase,
+  SiTailwindcss, SiJavascript, SiTypescript
 } from 'react-icons/si';
 
+// Extremely safe mapping to avoid build failures
 const getTechIcon = (tech: string) => {
   const t = tech.toLowerCase();
+  
+  // High-reliability Si Icons
   if (t.includes('python')) return <FaPython className="text-[#3776AB]" />;
   if (t.includes('flask')) return <SiFlask className="text-white opacity-80" />;
   if (t.includes('java')) return <FaJava className="text-[#007396]" />;
   if (t.includes('aws')) return <FaAws className="text-[#FF9900]" />;
-  if (t.includes('azure')) return <FaMicrosoft className="text-[#0089D6]" />;
   if (t.includes('node')) return <FaNodeJs className="text-[#339933]" />;
   if (t.includes('react')) return <FaReact className="text-[#61DAFB]" />;
   if (t.includes('figma')) return <FaFigma className="text-[#F24E1E]" />;
@@ -29,19 +31,21 @@ const getTechIcon = (tech: string) => {
   if (t.includes('supabase')) return <SiSupabase className="text-[#3ECF8E]" />;
   if (t.includes('docker')) return <FaDocker className="text-[#2496ED]" />;
   if (t.includes('airflow')) return <SiApacheairflow className="text-[#017CEE]" />;
-  if (t.includes('kafka')) return <SiApachekafka className="text-white opacity-80" />;
-  if (t.includes('snowflake')) return <SiSnowflake className="text-[#29B5E8]" />;
-  if (t.includes('dbt')) return <SiDbt className="text-[#FF694B]" />;
-  if (t.includes('power bi')) return <SiPowerbi className="text-[#F2C811]" />;
-  if (t.includes('socket')) return <SiSocketdotio className="text-white opacity-80" />;
-  if (t.includes('google') || t.includes('oauth')) return <SiGooglecloud className="text-[#4285F4]" />;
-  if (t.includes('sentry')) return <SiSentry className="text-[#362D59]" />;
   if (t.includes('tailwind')) return <SiTailwindcss className="text-[#06B6D4]" />;
   if (t.includes('js') || t.includes('javascript')) return <SiJavascript className="text-[#F7DF1E]" />;
   if (t.includes('ts') || t.includes('typescript')) return <SiTypescript className="text-[#3178C6]" />;
   if (t.includes('git')) return <FaGitAlt className="text-[#F05032]" />;
+  
+  // Safest fallbacks for icons often causes build issues in different library versions
+  if (t.includes('azure') || t.includes('microsoft')) return <FaMicrosoft className="text-[#0089D6]" />;
+  if (t.includes('google') || t.includes('oauth')) return <FaGoogle className="text-[#4285F4]" />;
+  if (t.includes('power bi') || t.includes('chart') || t.includes('analytics')) return <FaChartBar className="text-[#F2C811]" />;
+  if (t.includes('snowflake')) return <FaCloud className="text-[#29B5E8]" />;
+  if (t.includes('kafka') || t.includes('stream')) return <FaStream className="text-white opacity-80" />;
+  if (t.includes('socket')) return <FaBolt className="text-white opacity-80" />;
+  if (t.includes('sentry') || t.includes('bug') || t.includes('error')) return <FaExclamationTriangle className="text-[#362D59]" />;
+  if (t.includes('sql') || t.includes('db') || t.includes('dbt')) return <FaDatabase className="text-[#336791]" />;
   if (t.includes('ai') || t.includes('llm') || t.includes('groq') || t.includes('llama') || t.includes('gemini') || t.includes('whisper')) return <FaBrain className="text-[#FF6B6B]" />;
-  if (t.includes('sql') || t.includes('db')) return <FaDatabase className="text-[#336791]" />;
   
   return null;
 };
