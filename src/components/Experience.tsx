@@ -27,55 +27,79 @@ const Experience = () => {
               <h4 className="text-2xl font-semibold">Work Experience</h4>
             </div>
 
-            <div className="space-y-6">
-              {workExperience.map((job) => (
-                <div key={job.id} className="glass-card rounded-xl p-6 interactive-card">
-                  <div className="flex flex-col gap-3">
-                    <div className="flex justify-between items-start">
-                      <div className="flex items-start gap-3">
-                        <div className="w-12 h-12 rounded-lg bg-white/5 border border-accent/20 overflow-hidden">
-                          <img
-                            src={job.logo}
-                            alt={job.company}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div>
-                          <h5 className="text-xl font-medium">{job.title}</h5>
-                          <p className="text-accent">{job.company}</p>
-                        </div>
-                      </div>
-                      <Badge className="bg-accent/20 text-foreground/90 border border-accent/30 whitespace-nowrap">
-                        {job.period}
-                      </Badge>
+            <div className="relative">
+              {/* Enhanced Timeline line with gradient and glow - Mirrored from Education */}
+              <div className="absolute left-6 top-0 bottom-0 w-[3px]">
+                <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary opacity-50"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary blur-[2px] opacity-100"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-secondary/20 to-primary/20 blur-[6px]"></div>
+                
+                {/* Traveling Light Pulse */}
+                <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-transparent via-white to-transparent animate-timeline-pulse"></div>
+              </div>
+
+              <div className="space-y-6">
+                {workExperience.map((job) => (
+                  <div key={job.id} className="relative pl-12 group/item">
+                    {/* Enhanced Timeline dot with futuristic design - Consistent with Education */}
+                    <div className="absolute left-[16.5px] top-1/2 -translate-y-1/2 w-5 h-5 z-10 transition-transform duration-500 group-hover/item:scale-125">
+                      <div className="absolute inset-0 rounded-full bg-background border-[3px] border-primary group-hover/item:border-secondary transition-colors duration-300"></div>
+                      <div className="absolute inset-1.5 rounded-full bg-primary group-hover/item:bg-secondary transition-colors duration-300"></div>
+                      <div className="absolute inset-0 rounded-full bg-primary/40 blur-md animate-pulse"></div>
+                      
+                      {/* Interactive ping effect on hover */}
+                      <div className="absolute inset-[-4px] rounded-full border border-primary/20 opacity-0 group-hover/item:opacity-100 group-hover/item:animate-ping transition-opacity"></div>
                     </div>
 
-                    <p className="text-foreground/70 text-sm">{job.description}</p>
-
-                    {job.details && (
-                      <div className="space-y-3">
-                        {job.details.map((detail, idx) => (
-                          <div key={idx} className="border-l-2 border-primary/30 pl-3">
-                            <h6 className="font-medium text-primary text-sm">{detail.section}</h6>
-                            <p className="text-foreground/70 text-xs">{detail.content}</p>
+                    <div className="glass-card rounded-xl p-6 interactive-card group hover:border-primary/30 transition-all duration-300">
+                      <div className="flex flex-col gap-3">
+                        <div className="flex justify-between items-start">
+                          <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 rounded-lg bg-white/5 border border-accent/20 overflow-hidden flex-shrink-0">
+                              <img
+                                src={job.logo}
+                                alt={job.company}
+                                className="w-full h-full object-contain"
+                              />
+                            </div>
+                            <div>
+                              <h5 className="text-xl font-medium group-hover:text-primary transition-colors">{job.title}</h5>
+                              <p className="text-accent">{job.company}</p>
+                            </div>
                           </div>
-                        ))}
-                      </div>
-                    )}
+                          <Badge className="bg-accent/20 text-foreground/90 border border-accent/30 whitespace-nowrap">
+                            {job.period}
+                          </Badge>
+                        </div>
 
-                    <div className="flex flex-wrap gap-2">
-                      {job.skills.map((skill) => (
-                        <Badge
-                          key={skill}
-                          className="bg-primary/20 hover:bg-primary/30 text-foreground/90 border border-primary/30 text-xs"
-                        >
-                          {skill}
-                        </Badge>
-                      ))}
+                        <p className="text-foreground/70 text-sm">{job.description}</p>
+
+                        {job.details && (
+                          <div className="space-y-3">
+                            {job.details.map((detail, idx) => (
+                              <div key={idx} className="border-l-2 border-primary/30 pl-3">
+                                <h6 className="font-medium text-primary text-sm">{detail.section}</h6>
+                                <p className="text-foreground/70 text-xs">{detail.content}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        <div className="flex flex-wrap gap-2">
+                          {job.skills.map((skill) => (
+                            <Badge
+                              key={skill}
+                              className="bg-primary/20 hover:bg-primary/30 text-foreground/90 border border-primary/30 text-xs"
+                            >
+                              {skill}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
