@@ -3,12 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Github, ArrowRight, CalendarDays } from 'lucide-react';
 import { 
-  FaPython, FaJava, FaAws, FaDocker, FaNodeJs, FaReact, FaFigma, FaBrain, FaDatabase, FaGitAlt
+  FaPython, FaJava, FaAws, FaDocker, FaNodeJs, FaReact, FaFigma, FaBrain, FaDatabase, FaGitAlt, FaMicrosoft
 } from 'react-icons/fa';
 import { 
   SiPostgresql, SiApacheairflow, SiSpringboot, SiFlask,
   SiFastapi, SiPytorch, SiTensorflow, SiOpencv, SiSpacy,
-  SiPandas, SiScikitlearn, SiApache, SiMongodb, SiAzure,
+  SiPandas, SiScikitlearn, SiApache, SiMongodb,
   SiSnowflake, SiDbt, SiApachekafka, SiPowerbi, SiRedis, SiSupabase, SiSocketdotio,
   SiGooglecloud, SiSentry, SiTailwindcss, SiJavascript, SiTypescript
 } from 'react-icons/si';
@@ -19,7 +19,7 @@ const getTechIcon = (tech: string) => {
   if (t.includes('flask')) return <SiFlask className="text-white opacity-80" />;
   if (t.includes('java')) return <FaJava className="text-[#007396]" />;
   if (t.includes('aws')) return <FaAws className="text-[#FF9900]" />;
-  if (t.includes('azure')) return <SiAzure className="text-[#0089D6]" />;
+  if (t.includes('azure')) return <FaMicrosoft className="text-[#0089D6]" />;
   if (t.includes('node')) return <FaNodeJs className="text-[#339933]" />;
   if (t.includes('react')) return <FaReact className="text-[#61DAFB]" />;
   if (t.includes('figma')) return <FaFigma className="text-[#F24E1E]" />;
