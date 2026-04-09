@@ -111,21 +111,12 @@ const ProjectCard = ({ project }: { project: any }) => {
 
   return (
     <div className="glass-card rounded-xl overflow-hidden interactive-card flex flex-col h-full bg-white/[0.02] border-white/5 hover:bg-white/[0.04] transition-all duration-500 shadow-2xl hover:shadow-primary/10">
-      <div className="relative group overflow-hidden bg-black/10 border-b border-white/5 aspect-video px-4 py-2 flex items-center justify-center">
-        {/* Blurred background to fill space without cropping */}
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center blur-2xl opacity-40 scale-110"
-          style={{ backgroundImage: `url(${project.image})` }}
-        ></div>
-        
-        {/* Full uncropped image */}
-        <div className="relative z-10 w-full h-full flex items-center justify-center">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="max-w-full max-h-full object-contain transition-all duration-700 group-hover:scale-110 drop-shadow-2xl"
-          />
-        </div>
+      <div className="relative group overflow-hidden bg-black/40 border-b border-white/5 flex items-center justify-center p-2 min-h-[220px]">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-auto max-h-64 object-contain transition-transform duration-700 group-hover:scale-105"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-[2px]">
           <div className="flex gap-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
              <a
@@ -234,20 +225,6 @@ const Projects = () => {
       links: {
         demo: '#',
         github: 'https://github.com/Sudheerbmb/AdmitGuard',
-      },
-    },
-    {
-      id: 13,
-      title: 'Education Institution UI Design',
-      description:
-        'Modern and responsive user interface for an educational institution designed in Figma, focusing on intuitive navigation, accessibility, and visual consistency.',
-      category: 'Web',
-      tags: ['Figma', 'UI/UX Design', 'Prototyping', 'Education'],
-      image: '/Screenshot (42)-Picsart-AiImageEnhancer.png',
-      timeframe: 'Nov 2025',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/Educational_Website_UI',
       },
     },
     {
@@ -402,6 +379,20 @@ const Projects = () => {
       links: {
         demo: '#',
         github: 'https://github.com/Sudheerbmb/Hospital_Management_System',
+      },
+    },
+    {
+      id: 13,
+      title: 'Education Institution UI Design',
+      description:
+        'Modern and responsive user interface for an educational institution designed in Figma, focusing on intuitive navigation, accessibility, and visual consistency.',
+      category: 'Web',
+      tags: ['Figma', 'UI/UX Design', 'Prototyping', 'Education'],
+      image: '/Screenshot (42)-Picsart-AiImageEnhancer.png',
+      timeframe: 'Nov 2025',
+      links: {
+        demo: '#',
+        github: 'https://github.com/Sudheerbmb/Educational_Website_UI',
       },
     },
   ];
