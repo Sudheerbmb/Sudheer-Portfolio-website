@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Clock } from 'lucide-react';
+import { Heart, Clock, Github, Linkedin, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const languages = [
@@ -160,8 +160,21 @@ const Footer = () => {
               />
             </motion.div>
             
-            <p className="text-foreground/60 text-sm flex items-center">
+            <div className="flex items-center space-x-4 mb-4">
+              <a href="https://github.com/Sudheerbmb" target="_blank" rel="noopener noreferrer" className="text-foreground/40 hover:text-primary transition-colors">
+                <Github size={18} />
+              </a>
+              <a href="https://linkedin.com/in/sudheer-kumar-thati/" target="_blank" rel="noopener noreferrer" className="text-foreground/40 hover:text-primary transition-colors">
+                <Linkedin size={18} />
+              </a>
+              <a href="mailto:sudheermsdvk@gmail.com" className="text-foreground/40 hover:text-primary transition-colors">
+                <Mail size={18} />
+              </a>
+            </div>
+
+            <p className="text-foreground/60 text-xs flex items-center">
               Made with <Heart size={14} className="mx-1 heart-icon" fill="currentColor" /> 
+              &copy; {currentYear} Sudheer Kumar. All rights reserved.
             </p>
           </div>
         </div>

@@ -78,8 +78,8 @@ const Experience = () => {
                           <div className="space-y-3">
                             {job.details.map((detail, idx) => (
                               <div key={idx} className="border-l-2 border-primary/30 pl-3">
-                                <h6 className="font-medium text-primary text-sm">{detail.section}</h6>
-                                <p className="text-foreground/70 text-xs">{detail.content}</p>
+                                <h6 className="font-bold text-primary text-[13px] uppercase tracking-tight">{detail.section}</h6>
+                                <p className="text-foreground/70 text-sm leading-relaxed">{detail.content}</p>
                               </div>
                             ))}
                           </div>
