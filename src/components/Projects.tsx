@@ -6,7 +6,7 @@ import {
   FaPython, FaJava, FaAws, FaDocker, FaNodeJs, FaReact, FaFigma, FaBrain, FaDatabase, FaGitAlt, 
   FaMicrosoft, FaGoogle, FaExclamationTriangle, FaBolt, FaChartBar, FaCloud, FaStream, FaCode,
   FaMicrochip, FaRobot, FaMicrophone, FaLayerGroup, FaFilePdf, FaCalculator, FaNetworkWired,
-  FaChartPie, FaChartLine, FaDraftingCompass, FaSitemap, FaPlug, FaRunning, FaStar
+  FaChartPie, FaChartLine, FaDraftingCompass, FaSitemap, FaPlug, FaRunning, FaStar, FaLink
 } from 'react-icons/fa';
 import { 
   SiPostgresql, SiApacheairflow, SiSpringboot, SiFlask,
@@ -16,7 +16,8 @@ import {
   SiTailwindcss, SiJavascript, SiTypescript, SiMeta, SiGooglegemini,
   SiOpenai, SiAnthropic, SiHuggingface, SiStreamlit, SiApachespark,
   SiMysql, SiSqlite, SiNumpy, SiScipy, SiTableau, SiHtml5, SiCss3, SiExpress,
-  SiSocketdotio, SiDatabricks, SiFfmpeg, SiAmazonec2, SiPostman, SiMicrosoftpowerbi
+  SiSocketdotio, SiDatabricks, SiFfmpeg, SiAmazonec2, SiPostman, SiMicrosoftpowerbi,
+  SiLangchain
 } from 'react-icons/si';
 import { VscAzure, VscTerminal, VscWindow } from 'react-icons/vsc';
 
@@ -30,11 +31,11 @@ const getTechIcon = (tech: string) => {
   if (t.includes('llama') || t.includes('meta')) return <SiMeta className="text-[#0668E1]" />;
   if (t.includes('hugging') || t.includes('face')) return <SiHuggingface className="text-[#FFD21E]" />;
   if (t.includes('groq')) return <FaMicrochip className="text-[#F26522]" />;
-  if (t.includes('langchain')) return <FaRobot className="text-[#121212] dark:text-white" />;
+  if (t.includes('langchain')) return <SiLangchain className="text-[#121212] dark:text-white" />;
   if (t.includes('tensorflow')) return <SiTensorflow className="text-[#FF6F00]" />;
   if (t.includes('pytorch')) return <SiPytorch className="text-[#EE4C2C]" />;
   if (t.includes('opencv')) return <SiOpencv className="text-[#5C3EE8]" />;
-  if (t.includes('pandas')) return <SiPandas className="text-[#150458]" />;
+  if (t.includes('pandas')) return <SiPandasIcon className="text-[#150458]" />;
   if (t.includes('scikit')) return <SiScikitlearn className="text-[#F7931E]" />;
   if (t.includes('numpy')) return <SiNumpy className="text-[#013243]" />;
   if (t.includes('scipy')) return <SiScipy className="text-[#8CAAE6]" />;
@@ -101,6 +102,8 @@ const getTechIcon = (tech: string) => {
   
   return <FaCode className="text-foreground/40" />;
 };
+
+const SiPandasIcon = ({ className }: { className?: string }) => <SiPandas className={className} />;
 
 const ProjectCard = ({ project }: { project: any }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -172,7 +175,7 @@ const ProjectCard = ({ project }: { project: any }) => {
         </div>
 
         <div className="flex flex-wrap gap-2.5 mt-auto pt-2">
-          {project.tags.slice(0, isExpanded ? project.tags.length : 6).map((tag: string) => (
+          {project.tags.map((tag: string) => (
             <Badge
               key={tag}
               variant="outline"
@@ -184,22 +187,6 @@ const ProjectCard = ({ project }: { project: any }) => {
               <span>{tag}</span>
             </Badge>
           ))}
-          {!isExpanded && project.tags.length > 6 && (
-            <button 
-              onClick={() => setIsExpanded(true)}
-              className="text-[11px] text-primary/60 hover:text-primary self-center font-medium transition-colors"
-            >
-              +{project.tags.length - 6} more
-            </button>
-          )}
-          {isExpanded && project.tags.length > 6 && (
-             <button 
-                onClick={() => setIsExpanded(false)}
-                className="text-[11px] text-primary/60 hover:text-primary self-center font-medium transition-colors"
-              >
-                show less
-              </button>
-          )}
         </div>
       </div>
     </div>
