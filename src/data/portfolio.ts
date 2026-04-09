@@ -309,43 +309,53 @@ export const skillCategories = [
   {
     title: "Programming Languages",
     items: [
-      { name: 'Python', icon: FaPython },
-      { name: 'Java', icon: FaJava },
-      { name: 'C', icon: SiC },
-      { name: 'C++', icon: SiCplusplus },
+      { name: 'Python', icon: FaPython, color: '#3776AB' },
+      { name: 'Java', icon: FaJava, color: '#007396' },
+      { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+      { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
+      { name: 'SQL', icon: FaDatabase, color: '#4479A1' },
+      { name: 'C++', icon: SiCplusplus, color: '#00599C' },
     ]
   },
   {
     title: "Databases & Cloud",
     items: [
-      { name: 'PostgreSQL', icon: SiPostgresql },
-      { name: 'MongoDB', icon: SiMongodb },
-      { name: 'Redis', icon: SiRedis },
-      { name: 'AWS', icon: FaAws },
+      { name: 'PostgreSQL', icon: SiPostgresql, color: '#336791' },
+      { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
+      { name: 'Redis', icon: SiRedis, color: '#DC382D' },
+      { name: 'AWS', icon: FaAws, color: '#FF9900' },
+      { name: 'Azure', icon: FaMicrosoft, color: '#0089D6' },
+      { name: 'Supabase', icon: SiSupabase, color: '#3ECF8E' },
     ]
   },
   {
-    title: "Data Engineering & ML",
+    title: "Data Engineering",
     items: [
-      { name: 'Hadoop', icon: SiApache },
-      { name: 'Airflow', icon: SiApacheairflow },
-      { name: 'Pandas', icon: SiPandas },
-      { name: 'Scikit-learn', icon: SiScikitlearn },
+      { name: 'Apache Airflow', icon: SiApacheairflow, color: '#017CEE' },
+      { name: 'Apache Kafka', icon: SiApachekafka, color: '#ffffff' },
+      { name: 'Snowflake', icon: SiSnowflake, color: '#29B5E8' },
+      { name: 'Databricks', icon: SiDatabricks, color: '#FF3621' },
+      { name: 'DBT', icon: SiDbt, color: '#FF694B' },
+      { name: 'Docker', icon: FaDocker, color: '#2496ED' },
     ]
   }
 ];
 
 export const frameworks = [
-  { name: 'Flask', icon: SiFlask },
-  { name: 'FastAPI', icon: SiFastapi },
-  { name: 'Spring Boot', icon: SiSpringboot },
+  { name: 'Flask', icon: SiFlask, color: '#ffffff' },
+  { name: 'Node.js', icon: FaNodeJs, color: '#339933' },
+  { name: 'Express', icon: SiExpress, color: '#ffffff' },
+  { name: 'Spring Boot', icon: SiSpringboot, color: '#6DB33F' },
+  { name: 'React Native', icon: FaReact, color: '#61DAFB' },
 ];
 
 export const deepLearningSkills = [
-  { name: 'PyTorch', icon: SiPytorch },
-  { name: 'TensorFlow', icon: SiTensorflow },
-  { name: 'OpenCV', icon: SiOpencv },
-  { name: 'SpaCy', icon: SiSpacy },
+  { name: 'PyTorch', icon: SiPytorch, color: '#EE4C2C' },
+  { name: 'TensorFlow', icon: SiTensorflow, color: '#FF6F00' },
+  { name: 'Scikit-learn', icon: SiScikitlearn, color: '#F7931E' },
+  { name: 'Pandas', icon: SiPandas, color: '#150458' },
+  { name: 'Langchain', icon: SiLangchain, color: '#ffffff' },
+  { name: 'OpenCV', icon: SiOpencv, color: '#5C3EE8' },
 ];
 
 export const softSkills = [

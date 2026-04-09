@@ -18,8 +18,9 @@ const Skills = () => {
     );
   };
 
-  const SkillItem = ({ skill, icon: Icon }: { skill: string; icon: any }) => {
+  const SkillItem = ({ skill, icon: Icon, color }: { skill: string; icon: any; color?: string }) => {
     const relevantProjects = getProjectsForSkill(skill);
+    const isHovered = hoveredSkill === skill;
     
     return (
       <div 
@@ -28,8 +29,11 @@ const Skills = () => {
         onMouseLeave={() => setHoveredSkill(null)}
       >
         <div className="relative">
-          <Icon className="w-12 h-12 mb-1.5 text-accent hover:text-primary transition-colors" />
-          {hoveredSkill === skill && relevantProjects.length > 0 && (
+          <Icon 
+            className="w-12 h-12 mb-1.5 transition-all duration-300 text-accent" 
+            style={isHovered && color ? { color, filter: `drop-shadow(0 0 8px ${color}80)` } : undefined}
+          />
+          {isHovered && relevantProjects.length > 0 && (
             <div className="absolute -top-1 -right-1">
               <div className="relative">
                 <div className="absolute inset-0 bg-green-500/20 rounded-full blur-sm animate-pulse"></div>
@@ -82,7 +86,7 @@ const Skills = () => {
                 <h4 className="text-lg font-semibold mb-4">{category.title}</h4>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                   {category.items.map((skill) => (
-                    <SkillItem key={skill.name} skill={skill.name} icon={skill.icon} />
+                    <SkillItem key={skill.name} skill={skill.name} icon={skill.icon} color={skill.color} />
                   ))}
                 </div>
               </div>
@@ -96,7 +100,7 @@ const Skills = () => {
               <h4 className="text-lg font-semibold mb-4">Frameworks</h4>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {frameworks.map((framework) => (
-                  <SkillItem key={framework.name} skill={framework.name} icon={framework.icon} />
+                  <SkillItem key={framework.name} skill={framework.name} icon={framework.icon} color={framework.color} />
                 ))}
               </div>
             </div>
@@ -106,7 +110,7 @@ const Skills = () => {
               <h4 className="text-lg font-semibold mb-4">Deep Learning & Computer Vision</h4>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {deepLearningSkills.map((skill) => (
-                  <SkillItem key={skill.name} skill={skill.name} icon={skill.icon} />
+                  <SkillItem key={skill.name} skill={skill.name} icon={skill.icon} color={skill.color} />
                 ))}
               </div>
             </div>
