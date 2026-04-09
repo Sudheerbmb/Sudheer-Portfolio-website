@@ -30,8 +30,8 @@ const Skills = () => {
       >
         <div className="relative">
           <Icon 
-            className="w-12 h-12 mb-1.5 transition-all duration-300 text-accent" 
-            style={isHovered && color ? { color, filter: `drop-shadow(0 0 8px ${color}80)` } : undefined}
+            className={`w-12 h-12 mb-1.5 transition-all duration-300 ${!color ? 'text-accent' : ''}`}
+            style={color ? { color, filter: isHovered ? `drop-shadow(0 0 8px ${color}60)` : undefined } : undefined}
           />
           {isHovered && relevantProjects.length > 0 && (
             <div className="absolute -top-1 -right-1">
@@ -98,7 +98,7 @@ const Skills = () => {
             {/* Frameworks */}
             <div className="glass-card rounded-xl p-5 interactive-card">
               <h4 className="text-lg font-semibold mb-4">Frameworks</h4>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {frameworks.map((framework) => (
                   <SkillItem key={framework.name} skill={framework.name} icon={framework.icon} color={framework.color} />
                 ))}
