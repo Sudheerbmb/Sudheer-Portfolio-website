@@ -124,25 +124,18 @@ const Hero = () => {
           .name-letter {
             position: relative;
             display: inline-block;
-            color: #3b82f6;
-            font-family: 'Poppins', sans-serif;
-            animation: colorChange 12s infinite;
-            animation-delay: calc(var(--index) * 0.4s);
+            background: linear-gradient(to right, #00F5FF, #7B61FF, #00F5FF);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: inherit;
+            animation: textShimmer 4s linear infinite;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
           }
 
-          @keyframes colorChange {
-            0% {
-              color: #3b82f6;
-              text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-            }
-            50% {
-              color: #8b5cf6;
-              text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
-            }
-            100% {
-              color: #3b82f6;
-              text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-            }
+          @keyframes textShimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
           }
         `}
       </style>
