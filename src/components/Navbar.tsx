@@ -255,13 +255,6 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact' },
   ];
 
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   return (
     <>
       <header
@@ -272,10 +265,6 @@ const Navbar = () => {
             : 'bg-transparent py-5'
         )}
       >
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary via-accent to-secondary origin-left z-50"
-          style={{ scaleX }}
-        />
         <div className="container flex items-center justify-between">
           <a href="#" className="flex items-center">
             <FuturisticSymbol />
