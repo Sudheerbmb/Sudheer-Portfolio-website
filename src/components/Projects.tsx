@@ -111,11 +111,11 @@ const ProjectCard = ({ project }: { project: any }) => {
 
   return (
     <div className="glass-card rounded-xl overflow-hidden interactive-card flex flex-col h-full bg-white/[0.02] border-white/5 hover:bg-white/[0.04] transition-all duration-500 shadow-2xl hover:shadow-primary/10">
-      <div className="relative group overflow-hidden bg-black/40 border-b border-white/5 flex items-center justify-center p-2">
+      <div className="relative group overflow-hidden bg-black/40 border-b border-white/5 aspect-square flex items-center justify-center">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-auto max-h-64 object-contain transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-[2px]">
           <div className="flex gap-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
