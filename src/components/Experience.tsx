@@ -36,7 +36,7 @@ const Experience = () => {
       institution: 'Lovely Professional University',
       location: 'Punjab, India',
       period: '2022 - 2026',
-      description: 'CGPA: 8.91',
+      description: 'CGPA: 8.99',
     },
     {
       id: 2,
@@ -109,9 +109,9 @@ const Experience = () => {
                     <div className="flex justify-between items-start">
                       <div className="flex items-start gap-3">
                         <div className="w-12 h-12 rounded-lg bg-white/5 border border-accent/20 overflow-hidden">
-                          <img 
-                            src="/fut1.jpg" 
-                            alt="Futurense Technologies" 
+                          <img
+                            src="/fut1.jpg"
+                            alt="Futurense Technologies"
                             className="w-full h-full object-cover"
                           />
                         </div>
@@ -124,9 +124,9 @@ const Experience = () => {
                         {job.period}
                       </Badge>
                     </div>
-                    
+
                     <p className="text-foreground/70 text-sm">{job.description}</p>
-                    
+
                     {job.details && (
                       <div className="space-y-3">
                         {job.details.map((detail, idx) => (
@@ -137,11 +137,11 @@ const Experience = () => {
                         ))}
                       </div>
                     )}
-                    
+
                     <div className="flex flex-wrap gap-2">
                       {job.skills.map((skill) => (
-                        <Badge 
-                          key={skill} 
+                        <Badge
+                          key={skill}
                           className="bg-primary/20 hover:bg-primary/30 text-foreground/90 border border-primary/30 text-xs"
                         >
                           {skill}
@@ -168,7 +168,7 @@ const Experience = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-secondary/20 to-primary/20 blur-sm"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-secondary/10 to-primary/10 blur-md"></div>
               </div>
-              
+
               <div className="space-y-8">
                 {education.map((edu, index) => (
                   <div key={edu.id} className="relative pl-12">
@@ -180,16 +180,16 @@ const Experience = () => {
                       {/* Animated pulse effect */}
                       <div className="absolute inset-0 rounded-full animate-ping bg-gradient-to-r from-primary/20 to-secondary/20"></div>
                     </div>
-                    
+
                     <div className="glass-card rounded-xl p-6 interactive-card group hover:border-primary/30 transition-all duration-300">
                       <div className="flex justify-between items-start">
                         <div className="flex items-start gap-4">
                           <div className="w-12 h-12 rounded-lg bg-white/5 border border-accent/20 overflow-hidden flex-shrink-0 group-hover:border-primary/30 transition-colors">
-                            <img 
+                            <img
                               src={
                                 edu.institution.includes('Lovely Professional University') ? '/lpu.png' :
-                                edu.institution.includes('Narayana') ? '/nar.avif' :
-                                '/chai.jpeg'
+                                  edu.institution.includes('Narayana') ? '/nar.avif' :
+                                    '/chai.jpeg'
                               }
                               alt={edu.institution}
                               className="w-full h-full object-cover"
@@ -220,16 +220,16 @@ const Experience = () => {
         {/* Certifications */}
         <div className="mt-12">
           <div className="flex items-center gap-3 mb-6">
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="24" 
-              height="24" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="text-accent"
             >
               <rect x="4" y="5" width="16" height="16" rx="2" />
@@ -243,12 +243,12 @@ const Experience = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {certifications.map((cert) => (
-              <a 
-                key={cert.id} 
+              <a
+                key={cert.id}
                 href={
                   cert.name.includes('Azure Data Scientist') ? 'https://learn.microsoft.com/en-us/users/sudheerkumar-3457/credentials/8ce2fb3bcb6c5bbe' :
-                  cert.name.includes('Azure Data Fundamentals') ? 'https://learn.microsoft.com/en-us/users/sudheerkumar-3457/credentials/cf40454706fe3de6' :
-                  'https://invoice-lb.s3.us-east-2.amazonaws.com/certificate/SUDHEER-KUMARTue-Feb-18-2025-05-34-16-GMT-0000--Coordinated-Universal-Time--2284gv3r.pdf'
+                    cert.name.includes('Azure Data Fundamentals') ? 'https://learn.microsoft.com/en-us/users/sudheerkumar-3457/credentials/cf40454706fe3de6' :
+                      'https://invoice-lb.s3.us-east-2.amazonaws.com/certificate/SUDHEER-KUMARTue-Feb-18-2025-05-34-16-GMT-0000--Coordinated-Universal-Time--2284gv3r.pdf'
                 }
                 target="_blank"
                 rel="noopener noreferrer"
@@ -258,11 +258,11 @@ const Experience = () => {
                   <div className="flex justify-between items-start">
                     <div className="flex items-start gap-4">
                       <div className="w-14 h-14 rounded-lg bg-white/5 border border-accent/20 overflow-hidden flex-shrink-0 group-hover:border-accent/40 transition-colors">
-                        <img 
+                        <img
                           src={
                             cert.issuer.includes('Learnbay') ? '/lb.png' :
-                            cert.issuer.includes('Microsoft') ? '/mc.jpg' :
-                            '/mc.jpg'
+                              cert.issuer.includes('Microsoft') ? '/mc.jpg' :
+                                '/mc.jpg'
                           }
                           alt={cert.issuer}
                           className="w-full h-full object-cover"
@@ -277,14 +277,14 @@ const Experience = () => {
                       {cert.date}
                     </Badge>
                   </div>
-                  
+
                   {/* Certificate Image */}
                   <div className="relative aspect-[1.4/1] rounded-lg overflow-hidden border border-accent/20 group-hover:border-accent/30 transition-colors bg-white/5">
-                    <img 
+                    <img
                       src={
                         cert.name.includes('Azure Data Scientist') ? '/mic.jpg' :
-                        cert.name.includes('Azure Data Fundamentals') ? '/mic0.jpg' :
-                        '/LB.jpg'
+                          cert.name.includes('Azure Data Fundamentals') ? '/mic0.jpg' :
+                            '/LB.jpg'
                       }
                       alt={`${cert.name} Certificate`}
                       className="absolute inset-0 w-full h-full object-cover"
