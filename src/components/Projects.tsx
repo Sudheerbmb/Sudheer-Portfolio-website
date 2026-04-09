@@ -6,7 +6,7 @@ import {
   FaPython, FaJava, FaAws, FaDocker, FaNodeJs, FaReact, FaFigma, FaBrain, FaDatabase, FaGitAlt, 
   FaMicrosoft, FaGoogle, FaExclamationTriangle, FaBolt, FaChartBar, FaCloud, FaStream, FaCode,
   FaMicrochip, FaRobot, FaMicrophone, FaLayerGroup, FaFilePdf, FaCalculator, FaNetworkWired,
-  FaChartPie, FaChartLine, FaDraftingCompass, FaSitemap, FaPlugs, FaRunning, FaStar
+  FaChartPie, FaChartLine, FaDraftingCompass, FaSitemap, FaPlug, FaRunning, FaStar
 } from 'react-icons/fa';
 import { 
   SiPostgresql, SiApacheairflow, SiSpringboot, SiFlask,
@@ -95,7 +95,7 @@ const getTechIcon = (tech: string) => {
   if (t.includes('data analysis')) return <FaChartPie className="text-orange-400" />;
   if (t.includes('er model')) return <FaSitemap className="text-indigo-400" />;
   if (t.includes('optimization')) return <FaRunning className="text-green-400" />;
-  if (t.includes('integration')) return <FaPlugs className="text-yellow-500" />;
+  if (t.includes('integration')) return <FaPlug className="text-yellow-500" />;
   if (t.includes('tkinter') || t.includes('gui')) return <VscWindow className="text-blue-500" />;
   if (t.includes('surprise')) return <FaStar className="text-yellow-400" />;
   
