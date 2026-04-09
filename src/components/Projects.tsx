@@ -2,85 +2,134 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Github, ArrowRight, CalendarDays } from 'lucide-react';
+import { 
+  FaPython, FaJava, FaAws, FaDocker, FaNodeJs, FaReact, FaFigma, FaBrain, FaDatabase, FaGitAlt
+} from 'react-icons/fa';
+import { 
+  SiPostgresql, SiApacheairflow, SiSpringboot, SiFlask,
+  SiFastapi, SiPytorch, SiTensorflow, SiOpencv, SiSpacy,
+  SiPandas, SiScikitlearn, SiApache, SiMongodb, SiMicrosoftazure,
+  SiSnowflake, SiDbt, SiApachekafka, SiPowerbi, SiRedis, SiSupabase, SiSocketdotio,
+  SiGooglecloud, SiSentry, SiTailwindcss, SiJavascript, SiTypescript
+} from 'react-icons/si';
+
+const getTechIcon = (tech: string) => {
+  const t = tech.toLowerCase();
+  if (t.includes('python')) return <FaPython className="text-[#3776AB]" />;
+  if (t.includes('flask')) return <SiFlask className="text-white opacity-80" />;
+  if (t.includes('java')) return <FaJava className="text-[#007396]" />;
+  if (t.includes('aws')) return <FaAws className="text-[#FF9900]" />;
+  if (t.includes('azure')) return <SiMicrosoftazure className="text-[#0089D6]" />;
+  if (t.includes('node')) return <FaNodeJs className="text-[#339933]" />;
+  if (t.includes('react')) return <FaReact className="text-[#61DAFB]" />;
+  if (t.includes('figma')) return <FaFigma className="text-[#F24E1E]" />;
+  if (t.includes('postgres')) return <SiPostgresql className="text-[#336791]" />;
+  if (t.includes('mongodb')) return <SiMongodb className="text-[#47A248]" />;
+  if (t.includes('redis')) return <SiRedis className="text-[#DC382D]" />;
+  if (t.includes('supabase')) return <SiSupabase className="text-[#3ECF8E]" />;
+  if (t.includes('docker')) return <FaDocker className="text-[#2496ED]" />;
+  if (t.includes('airflow')) return <SiApacheairflow className="text-[#017CEE]" />;
+  if (t.includes('kafka')) return <SiApachekafka className="text-white opacity-80" />;
+  if (t.includes('snowflake')) return <SiSnowflake className="text-[#29B5E8]" />;
+  if (t.includes('dbt')) return <SiDbt className="text-[#FF694B]" />;
+  if (t.includes('power bi')) return <SiPowerbi className="text-[#F2C811]" />;
+  if (t.includes('socket')) return <SiSocketdotio className="text-white opacity-80" />;
+  if (t.includes('google') || t.includes('oauth')) return <SiGooglecloud className="text-[#4285F4]" />;
+  if (t.includes('sentry')) return <SiSentry className="text-[#362D59]" />;
+  if (t.includes('tailwind')) return <SiTailwindcss className="text-[#06B6D4]" />;
+  if (t.includes('js') || t.includes('javascript')) return <SiJavascript className="text-[#F7DF1E]" />;
+  if (t.includes('ts') || t.includes('typescript')) return <SiTypescript className="text-[#3178C6]" />;
+  if (t.includes('git')) return <FaGitAlt className="text-[#F05032]" />;
+  if (t.includes('ai') || t.includes('llm') || t.includes('groq') || t.includes('llama') || t.includes('gemini') || t.includes('whisper')) return <FaBrain className="text-[#FF6B6B]" />;
+  if (t.includes('sql') || t.includes('db')) return <FaDatabase className="text-[#336791]" />;
+  
+  return null;
+};
 
 const ProjectCard = ({ project }: { project: any }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const hasLongDescription = project.description.length > 100;
 
   return (
-    <div className="glass-card rounded-xl overflow-hidden interactive-card flex flex-col h-full">
-      <div className="relative group">
+    <div className="glass-card rounded-xl overflow-hidden interactive-card flex flex-col h-full bg-white/[0.02] border-white/5 hover:bg-white/[0.04] transition-all duration-500 shadow-2xl hover:shadow-primary/10">
+      <div className="relative group overflow-hidden">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-52 object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-          <div className="flex gap-3">
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-[2px]">
+          <div className="flex gap-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
              <a
                 href={project.links.github}
-                className="p-2 bg-background/80 rounded-full hover:bg-primary hover:text-white transition-all"
+                className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-primary hover:text-white transition-all duration-300 border border-white/10 shadow-xl"
                 target="_blank"
                 rel="noopener noreferrer"
+                title="View Source"
               >
-                <Github size={20} />
+                <Github size={22} />
               </a>
               {project.links.demo !== '#' && (
                 <a
                   href={project.links.demo}
-                  className="p-2 bg-background/80 rounded-full hover:bg-primary hover:text-white transition-all"
+                  className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-primary hover:text-white transition-all duration-300 border border-white/10 shadow-xl"
                   target="_blank"
                   rel="noopener noreferrer"
+                  title="Live Demo"
                 >
-                  <ExternalLink size={20} />
+                  <ExternalLink size={22} />
                 </a>
               )}
           </div>
         </div>
       </div>
       
-      <div className="p-5 flex flex-col flex-grow space-y-4">
-        <div className="flex items-start justify-between gap-2">
-          <h4 className="text-xl font-bold leading-tight group-hover:text-primary transition-colors">
+      <div className="p-6 flex flex-col flex-grow space-y-5">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between gap-3">
+            <Badge className="bg-primary/10 text-primary border border-primary/20 text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider rounded-md">
+              {project.category}
+            </Badge>
+            <div className="flex items-center gap-1.5 text-xs text-foreground/50 font-medium">
+              <CalendarDays className="w-3.5 h-3.5 text-primary/60" />
+              <span>{project.timeframe}</span>
+            </div>
+          </div>
+          <h4 className="text-xl font-bold leading-tight text-white/90 group-hover:text-primary transition-colors duration-300">
             {project.title}
           </h4>
-          <Badge className="bg-primary/10 text-primary border border-primary/20 text-[10px] px-2 py-0.5 whitespace-nowrap">
-            {project.category}
-          </Badge>
-        </div>
-
-        <div className="flex items-center gap-2 text-xs text-foreground/60">
-          <CalendarDays className="w-3.5 h-3.5 text-primary/70" />
-          <span>{project.timeframe}</span>
         </div>
 
         <div className="relative">
-          <p className={`text-foreground/70 text-sm leading-relaxed transition-all duration-300 ${!isExpanded && hasLongDescription ? 'line-clamp-2' : ''}`}>
+          <p className={`text-foreground/70 text-sm leading-relaxed transition-all duration-500 ${!isExpanded && hasLongDescription ? 'line-clamp-2' : ''}`}>
             {project.description}
           </p>
           {hasLongDescription && (
             <button 
               onClick={() => setIsExpanded(!isExpanded)}
-              className="text-primary hover:text-primary/80 text-xs font-semibold mt-2 flex items-center gap-1 transition-colors"
+              className="text-primary hover:text-primary/80 text-xs font-bold mt-2 flex items-center gap-1.5 transition-all duration-300 group/btn"
             >
-              {isExpanded ? 'Show Less' : 'Read More'}
-              <ArrowRight size={12} className={`transition-transform duration-300 ${isExpanded ? '-rotate-90' : 'rotate-0'}`} />
+              <span className="border-b border-transparent group-hover/btn:border-primary">{isExpanded ? 'Show Less' : 'Read More'}</span>
+              <ArrowRight size={14} className={`transition-transform duration-300 ${isExpanded ? '-rotate-90' : 'group-hover/btn:translate-x-1'}`} />
             </button>
           )}
         </div>
 
-        <div className="flex flex-wrap gap-2 mt-auto pt-2">
+        <div className="flex flex-wrap gap-2.5 mt-auto pt-2">
           {project.tags.slice(0, isExpanded ? project.tags.length : 6).map((tag: string) => (
             <Badge
               key={tag}
-              variant="secondary"
-              className="bg-secondary/30 text-foreground/80 text-[10px] hover:bg-secondary/50 transition-colors"
+              variant="outline"
+              className="bg-white/[0.03] border-white/10 text-foreground/80 text-[11px] px-2.5 py-1 flex items-center gap-1.5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 rounded-lg group/tag"
             >
-              {tag}
+              <span className="group-hover/tag:scale-125 transition-transform duration-300">
+                {getTechIcon(tag)}
+              </span>
+              <span>{tag}</span>
             </Badge>
           ))}
           {!isExpanded && project.tags.length > 6 && (
-            <span className="text-[10px] text-foreground/40 self-center">+{project.tags.length - 6} more</span>
+            <span className="text-[11px] text-foreground/30 self-center font-medium">+{project.tags.length - 6} more</span>
           )}
         </div>
       </div>
