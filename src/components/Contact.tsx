@@ -50,8 +50,10 @@ const Contact = () => {
         'service_7dj0cbe', // Your EmailJS service ID
         'template_7onqixd', // Your EmailJS template ID
         {
-          from_name: values.name,
+          name: values.name,
+          email: values.email,
           reply_to: values.email,
+          title: values.subject,
           subject: values.subject,
           message: values.message,
         },
