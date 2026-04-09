@@ -6,7 +6,7 @@ import {
 import { 
   SiPostgresql, SiApacheairflow, SiSpringboot, SiFlask,
   SiFastapi, SiPytorch, SiTensorflow, SiOpencv, SiSpacy,
-  SiPandas, SiScikitlearn, SiApache, SiMongodb, SiCplusplus, SiC
+  SiPandas, SiScikitlearn, SiApache, SiMongodb, SiCplusplus, SiC, SiRedis
 } from 'react-icons/si';
 
 const Skills = () => {
@@ -21,7 +21,7 @@ const Skills = () => {
     {
       id: 14,
       title: 'AdmitGuard: AI Admissions Governance',
-      skills: ['Node.js', 'Express', 'React Native', 'Supabase', 'PostgreSQL', 'Groq', 'Socket.io'],
+      skills: ['Node.js', 'Express', 'React Native', 'Supabase', 'PostgreSQL', 'Groq', 'Socket.io', 'Google OAuth', 'Redis', 'Sentry', 'Xenova'],
     },
     {
       id: 6,
@@ -96,7 +96,7 @@ const Skills = () => {
       items: [
         { name: 'PostgreSQL', icon: SiPostgresql },
         { name: 'MongoDB', icon: SiMongodb },
-        { name: 'SQL', icon: FaDatabase },
+        { name: 'Redis', icon: SiRedis },
         { name: 'AWS', icon: FaAws },
       ]
     },

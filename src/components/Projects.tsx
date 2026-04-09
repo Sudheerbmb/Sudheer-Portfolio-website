@@ -3,6 +3,91 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Github, ArrowRight, CalendarDays } from 'lucide-react';
 
+const ProjectCard = ({ project }: { project: any }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const hasLongDescription = project.description.length > 100;
+
+  return (
+    <div className="glass-card rounded-xl overflow-hidden interactive-card flex flex-col h-full">
+      <div className="relative group">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+          <div className="flex gap-3">
+             <a
+                href={project.links.github}
+                className="p-2 bg-background/80 rounded-full hover:bg-primary hover:text-white transition-all"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github size={20} />
+              </a>
+              {project.links.demo !== '#' && (
+                <a
+                  href={project.links.demo}
+                  className="p-2 bg-background/80 rounded-full hover:bg-primary hover:text-white transition-all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <ExternalLink size={20} />
+                </a>
+              )}
+          </div>
+        </div>
+      </div>
+      
+      <div className="p-5 flex flex-col flex-grow space-y-4">
+        <div className="flex items-start justify-between gap-2">
+          <h4 className="text-xl font-bold leading-tight group-hover:text-primary transition-colors">
+            {project.title}
+          </h4>
+          <Badge className="bg-primary/10 text-primary border border-primary/20 text-[10px] px-2 py-0.5 whitespace-nowrap">
+            {project.category}
+          </Badge>
+        </div>
+
+        <div className="flex items-center gap-2 text-xs text-foreground/60">
+          <CalendarDays className="w-3.5 h-3.5 text-primary/70" />
+          <span>{project.timeframe}</span>
+        </div>
+
+        <div className="relative">
+          <p className={`text-foreground/70 text-sm leading-relaxed transition-all duration-300 ${!isExpanded && hasLongDescription ? 'line-clamp-2' : ''}`}>
+            {project.description}
+          </p>
+          {hasLongDescription && (
+            <button 
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="text-primary hover:text-primary/80 text-xs font-semibold mt-2 flex items-center gap-1 transition-colors"
+            >
+              {isExpanded ? 'Show Less' : 'Read More'}
+              <ArrowRight size={12} className={`transition-transform duration-300 ${isExpanded ? '-rotate-90' : 'rotate-0'}`} />
+            </button>
+          )}
+        </div>
+
+        <div className="flex flex-wrap gap-2 mt-auto pt-2">
+          {project.tags.slice(0, isExpanded ? project.tags.length : 6).map((tag: string) => (
+            <Badge
+              key={tag}
+              variant="secondary"
+              className="bg-secondary/30 text-foreground/80 text-[10px] hover:bg-secondary/50 transition-colors"
+            >
+              {tag}
+            </Badge>
+          ))}
+          {!isExpanded && project.tags.length > 6 && (
+            <span className="text-[10px] text-foreground/40 self-center">+{project.tags.length - 6} more</span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Projects = () => {
   const categories = ['All', 'AI/ML', 'Web', 'Data Science', 'DE'];
   const [activeCategory, setActiveCategory] = useState('All');
@@ -13,7 +98,7 @@ const Projects = () => {
       id: 15,
       title: 'Insight — AI Interview Practice Partner',
       description:
-        'Flask web app for role-based mock interviews powered by a multi-agent LLM loop (profiler + grader + interviewer + feedback) with live grading and coding round UI.',
+        'Flask web app for role-based mock interviews powered by a multi-agent LLM loop (profiler + grader + interviewer + feedback) with live grading and coding round UI. practice with adaptive questions, scoring, and a final feedback report.',
       category: 'AI/ML',
       tags: ['Flask', 'Groq API', 'Multi-agent LLM', 'Python', 'Web Speech API', 'Redis', 'ChromaDB'],
       image: '/insight.png',
@@ -27,9 +112,9 @@ const Projects = () => {
       id: 14,
       title: 'AdmitGuard: AI Admissions Governance',
       description:
-        'A distributed framework for high-integrity admissions, leveraging edge-validation, multi-stage AI reasoning, and latent semantic search to prevent identity spoofing.',
+        'A distributed framework for high-integrity admissions, leveraging edge-validation, multi-stage AI reasoning, and latent semantic search to prevent identity spoofing. incorporates Google OAuth, Redis caching, Sentry tracking, and Xenova embeddings.',
       category: 'AI/ML',
-      tags: ['Node.js', 'Express', 'React Native', 'Supabase', 'PostgreSQL', 'Groq', 'Socket.io'],
+      tags: ['Node.js', 'Express', 'React Native', 'Supabase', 'PostgreSQL', 'Groq', 'Socket.io', 'Google OAuth', 'Redis', 'Sentry', 'Xenova'],
       image: '/placeholder.svg',
       timeframe: 'Apr 2025',
       links: {
@@ -246,56 +331,7 @@ const Projects = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayedProjects.map((project) => (
-            <div
-              key={project.id}
-              className="glass-card rounded-xl overflow-hidden interactive-card"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-40 object-cover"
-              />
-              <div className="p-4 space-y-3">
-                <div className="flex items-start justify-between">
-                  <h4 className="text-lg font-semibold">{project.title}</h4>
-                  <Badge className="bg-accent/20 text-accent text-xs">
-                    {project.category}
-                  </Badge>
-                </div>
-
-                <div className="flex items-center gap-2 text-xs text-foreground/70">
-                  <CalendarDays className="w-3 h-3" />
-                  <span>{project.timeframe}</span>
-                </div>
-
-                <p className="text-foreground/70 text-xs line-clamp-2">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      variant="outline"
-                      className="border-primary/30 text-foreground/80 text-xs"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-
-                <div className="flex justify-between pt-2">
-                  <a
-                    href={project.links.github}
-                    className="text-foreground/80 hover:text-primary transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github size={18} />
-                  </a>
-                </div>
-              </div>
-            </div>
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 
