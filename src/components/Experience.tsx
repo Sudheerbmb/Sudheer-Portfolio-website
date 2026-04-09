@@ -88,22 +88,26 @@ const Experience = () => {
 
             <div className="relative">
               {/* Enhanced Timeline line with gradient and glow */}
-              <div className="absolute left-6 top-0 bottom-0 w-[2px]">
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-secondary/40 to-primary/40"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-secondary/20 to-primary/20 blur-sm"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/10 via-secondary/10 to-primary/10 blur-md"></div>
+              <div className="absolute left-6 top-0 bottom-0 w-[3px]">
+                <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary opacity-50"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary blur-[2px] opacity-100"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-secondary/20 to-primary/20 blur-[6px]"></div>
+                
+                {/* Traveling Light Pulse */}
+                <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-transparent via-white to-transparent animate-timeline-pulse"></div>
               </div>
 
               <div className="space-y-8">
                 {education.map((edu) => (
-                  <div key={edu.id} className="relative pl-12">
-                    {/* Enhanced Timeline dot with glow and animation */}
-                    <div className="absolute left-[21px] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary/60 shadow-lg shadow-primary/20 group">
-                      <div className="absolute inset-0.5 rounded-full bg-gradient-to-r from-primary to-secondary"></div>
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 blur-sm"></div>
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 blur-md"></div>
-                      {/* Animated pulse effect */}
-                      <div className="absolute inset-0 rounded-full animate-ping bg-gradient-to-r from-primary/20 to-secondary/20"></div>
+                  <div key={edu.id} className="relative pl-12 group/item">
+                    {/* Enhanced Timeline dot with futuristic design */}
+                    <div className="absolute left-[16.5px] top-1/2 -translate-y-1/2 w-5 h-5 z-10 transition-transform duration-500 group-hover/item:scale-125">
+                      <div className="absolute inset-0 rounded-full bg-background border-[3px] border-primary group-hover/item:border-secondary transition-colors duration-300"></div>
+                      <div className="absolute inset-1.5 rounded-full bg-primary group-hover/item:bg-secondary transition-colors duration-300"></div>
+                      <div className="absolute inset-0 rounded-full bg-primary/40 blur-md animate-pulse"></div>
+                      
+                      {/* Interactive ping effect on hover */}
+                      <div className="absolute inset-[-4px] rounded-full border border-primary/20 opacity-0 group-hover/item:opacity-100 group-hover/item:animate-ping transition-opacity"></div>
                     </div>
 
                     <div className="glass-card rounded-xl p-6 interactive-card group hover:border-primary/30 transition-all duration-300">
