@@ -65,6 +65,18 @@ const Hero = () => {
       {/* Content */}
       <div className="container relative z-10">
         <div className="flex flex-col items-center text-center space-y-8 animate-fade-in">
+          {/* Profile Image at Top */}
+          <div className="relative w-40 h-40 md:w-52 md:h-52 mb-4 group">
+            <div className="absolute inset-0 bg-gradient-to-r from-neon-purple to-neon-blue rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
+            <div className="relative w-full h-full rounded-full border-2 border-white/10 overflow-hidden bg-black/20 flex items-center justify-center p-1">
+              <img 
+                src="/IMG_20251208_205117.jpg"
+                alt="Sudheer Kumar Thati"
+                className="w-full h-full object-contain rounded-full transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+          </div>
+          
           <p className="text-accent font-medium text-xl md:text-2xl">Hello, I'm</p>
           <motion.h1 
             className="text-4xl md:text-6xl lg:text-7xl font-bold flex flex-wrap justify-center gap-1"

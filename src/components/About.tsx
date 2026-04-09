@@ -49,11 +49,11 @@ const About = () => {
           {/* Image */}
           <div className="w-full md:w-5/12">
             <div className="relative">
-              <div className="aspect-square rounded-xl overflow-hidden neon-border">
+              <div className="rounded-xl overflow-hidden neon-border bg-black/40 flex items-center justify-center min-h-[400px]">
                 <img 
                   src="/IMG_20251208_205117.jpg"
                   alt="Sudheer Kumar Thati" 
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-auto max-h-[600px] object-contain rounded-xl transition-transform duration-700 hover:scale-105"
                 />
               </div>
 
