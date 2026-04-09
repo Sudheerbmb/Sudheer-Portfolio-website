@@ -33,9 +33,9 @@ const FuturisticSymbol = () => {
   return (
     <motion.div
       ref={containerRef}
-      className="relative w-14 h-14 md:w-16 md:h-16 cursor-pointer overflow-visible"
-      style={{ perspective: "1200px" }}
-      onMouseMove={handleMouseMove}
+    className="relative w-14 h-14 md:w-16 md:h-16 flex items-center justify-center cursor-pointer overflow-visible"
+    style={{ perspective: "1200px" }}
+    onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         mouseX.set(0);

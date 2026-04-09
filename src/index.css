@@ -76,6 +76,30 @@
   .interactive-card {
     @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(var(--accent),0.1)] hover:border-accent/30;
   }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .perspective-1200 {
+    perspective: 1200px;
+  }
+
+  .translate-z-10 {
+    transform: translateZ(10px);
+  }
+
+  .translate-z-20 {
+    transform: translateZ(20px);
+  }
+
+  .translate-z-60 {
+    transform: translateZ(60px);
+  }
 }
 
 /* Custom Scrollbar */
