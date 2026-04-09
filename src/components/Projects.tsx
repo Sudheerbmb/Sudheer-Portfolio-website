@@ -101,7 +101,7 @@ const Projects = () => {
         'Flask web app for role-based mock interviews powered by a multi-agent LLM loop (profiler + grader + interviewer + feedback) with live grading and coding round UI. practice with adaptive questions, scoring, and a final feedback report.',
       category: 'AI/ML',
       tags: ['Flask', 'Groq API', 'Multi-agent LLM', 'Python', 'Web Speech API', 'Redis', 'ChromaDB'],
-      image: '/insight.png',
+      image: '/Screenshot (270).png',
       timeframe: 'Apr 2025',
       links: {
         demo: '#',
@@ -115,7 +115,7 @@ const Projects = () => {
         'A distributed framework for high-integrity admissions, leveraging edge-validation, multi-stage AI reasoning, and latent semantic search to prevent identity spoofing. incorporates Google OAuth, Redis caching, Sentry tracking, and Xenova embeddings.',
       category: 'AI/ML',
       tags: ['Node.js', 'Express', 'React Native', 'Supabase', 'PostgreSQL', 'Groq', 'Socket.io', 'Google OAuth', 'Redis', 'Sentry', 'Xenova'],
-      image: '/placeholder.svg',
+      image: '/Screenshot (269).png',
       timeframe: 'Apr 2025',
       links: {
         demo: '#',
