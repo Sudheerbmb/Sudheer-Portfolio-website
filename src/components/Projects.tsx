@@ -5,7 +5,7 @@ import { ExternalLink, Github, ArrowRight, CalendarDays } from 'lucide-react';
 import {
   FaPython, FaJava, FaAws, FaDocker, FaNodeJs, FaReact, FaFigma, FaBrain, FaDatabase, FaGitAlt,
   FaCode, FaMicrochip, FaFilePdf, FaCalculator, FaChartLine, FaDraftingCompass, FaSitemap, FaRunning,
-  FaStar, FaPlug, FaNetworkWired, FaChartPie, FaChartBar
+  FaStar, FaPlug, FaNetworkWired, FaChartPie, FaChartBar, FaGoogle, FaExclamationTriangle, FaLayerGroup
 } from 'react-icons/fa';
 import {
   SiPostgresql, SiApacheairflow, SiSpringboot, SiFlask,
