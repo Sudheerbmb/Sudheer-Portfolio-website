@@ -12,14 +12,14 @@ const FuturisticSymbol = () => {
   const [isHovered, setIsHovered] = useState(false);
   const { scrollYProgress } = useScroll();
 
-  const springConfig = { damping: 30, stiffness: 400 };
+  const springConfig = { damping: 40, stiffness: 500 };
   const springX = useSpring(mouseX, springConfig);
   const springY = useSpring(mouseY, springConfig);
 
-  const rotateX = useTransform(springY, [-50, 50], [30, -30]);
-  const rotateY = useTransform(springX, [-50, 50], [-30, 30]);
-  const scrollRotation = useTransform(scrollYProgress, [0, 1], [0, 720]);
-  const scrollScale = useTransform(scrollYProgress, [0, 0.2, 1], [1, 1.1, 1]);
+  const rotateX = useTransform(springY, [-50, 50], [35, -35]);
+  const rotateY = useTransform(springX, [-50, 50], [-35, 35]);
+  const scrollRotation = useTransform(scrollYProgress, [0, 1], [0, 1080]);
+  const corePulse = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.4, 1]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -33,7 +33,8 @@ const FuturisticSymbol = () => {
   return (
     <motion.div
       ref={containerRef}
-      className="relative w-12 h-12 md:w-14 md:h-14 cursor-pointer perspective-1000"
+      className="relative w-14 h-14 md:w-16 md:h-16 cursor-pointer overflow-visible"
+      style={{ perspective: "1200px" }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
@@ -41,45 +42,55 @@ const FuturisticSymbol = () => {
         mouseY.set(0);
         setIsHovered(false);
       }}
-      style={{ scale: scrollScale }}
     >
       <motion.div
-        className="absolute inset-0 preserve-3d"
+        className="absolute inset-0 w-full h-full pointer-events-none"
         style={{
           rotateX,
           rotateY,
           rotateZ: scrollRotation,
+          transformStyle: "preserve-3d",
         }}
       >
-        {/* Outer Geometric Ring */}
-        <motion.div
-          className="absolute inset-0 border-2 border-primary/40 rounded-xl"
+        {/* Layer 1: Glassmorphic Hexagon Shell */}
+        <motion.div 
+          className="absolute inset-0 bg-white/[0.03] backdrop-blur-[2px] border border-white/10 rounded-2xl shadow-2xl"
           animate={{
-            rotate: [0, 360],
-            borderRadius: ["30%", "50%", "30%"],
+            rotateY: [0, 360],
+            scale: isHovered ? 1.05 : 1
           }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
         />
 
-        {/* Floating Hexagons */}
+        {/* Layer 2: Counter-Rotating Neon Shell */}
+        <motion.div
+          className="absolute inset-2 border-2 border-accent/20 rounded-full"
+          animate={{ rotate: [360, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+        />
+
+        {/* Layer 3: Interactive Geometric Core */}
         {[0, 1, 2].map((i) => (
           <motion.svg
             key={i}
-            className="absolute inset-0 w-full h-full opacity-70"
+            className="absolute inset-0 w-full h-full"
             viewBox="0 0 100 100"
-            style={{ translateZ: i * 15 - 15 }}
+            style={{ 
+              translateZ: (i + 1) * 20,
+              filter: `drop-shadow(0 0 8px ${i % 2 === 0 ? '#00F5FF' : '#9b87f5'})`
+            }}
           >
             <motion.path
-              d="M50 5 L90 27.5 L90 72.5 L50 95 L10: 72.5 L10 27.5 Z"
-              stroke={i === 1 ? "url(#grad-blue)" : "url(#grad-purple)"}
-              strokeWidth="1.5"
+              d="M50 8 L90 30 L90 70 L50 92 L10 70 L10 30 Z"
+              stroke={i % 2 === 0 ? "url(#neon-grad-1)" : "url(#neon-grad-2)"}
+              strokeWidth={i === 1 ? "2.5" : "1"}
               fill="none"
               animate={{
                 strokeDasharray: ["0, 300", "300, 0"],
-                opacity: [0.3, 0.8, 0.3],
+                scale: [0.8, 1, 0.8]
               }}
               transition={{
-                duration: 4 + i,
+                duration: 5 - i,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
@@ -87,32 +98,37 @@ const FuturisticSymbol = () => {
           </motion.svg>
         ))}
 
-        {/* Glowing Core */}
+        {/* Layer 4: Floating "S" Glyph Central Identity */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center translate-z-10"
-          animate={{ scale: isHovered ? 1.2 : 1 }}
+          className="absolute inset-0 flex items-center justify-center"
+          style={{ translateZ: "60px" }}
         >
-          <div className="w-4 h-4 rounded-full bg-white shadow-[0_0_15px_#9b87f5,0_0_30px_#00F5FF] relative animate-pulse">
-            <div className="absolute inset-0 rounded-full bg-primary blur-sm"></div>
-          </div>
+          <motion.div
+            className="relative w-8 h-8 flex items-center justify-center font-black text-xl text-white drop-shadow-[0_0_15px_rgba(155,135,245,0.8)]"
+            animate={{ scale: isHovered ? [1, 1.2, 1] : 1 }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            S
+            <div className="absolute -inset-2 bg-primary/20 rounded-full blur-md animate-pulse" />
+          </motion.div>
         </motion.div>
 
-        {/* Orbital Particles */}
+        {/* Layer 5: Dynamic Light Trail Particles */}
         <AnimatePresence>
           {isHovered && (
-            <motion.div className="absolute inset-0">
-              {[...Array(6)].map((_, i) => (
+            <motion.div className="absolute inset-0" style={{ translateZ: "80px" }}>
+              {[...Array(8)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-1 h-1 rounded-full bg-accent"
-                  initial={{ opacity: 0, scale: 0 }}
+                  className="absolute w-1 h-1 rounded-full bg-cyan-400 blur-[1px]"
+                  initial={{ opacity: 0, x: 0, y: 0 }}
                   animate={{
                     opacity: [0, 1, 0],
-                    scale: [0, 1.5, 0],
-                    x: Math.cos(i * 60) * 30,
-                    y: Math.sin(i * 60) * 30,
+                    x: Math.cos(i * 45 * (Math.PI / 180)) * 40,
+                    y: Math.sin(i * 45 * (Math.PI / 180)) * 40,
+                    scale: [0, 2, 0]
                   }}
-                  transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.1 }}
+                  transition={{ duration: 1, repeat: Infinity, delay: i * 0.1 }}
                 />
               ))}
             </motion.div>
@@ -120,15 +136,15 @@ const FuturisticSymbol = () => {
         </AnimatePresence>
       </motion.div>
 
-      {/* SVG Definitions */}
+      {/* High-Fidelity Definitions */}
       <svg className="absolute w-0 h-0">
         <defs>
-          <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id="neon-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#00F5FF" />
-            <stop offset="100%" stopColor="#7B61FF" />
+            <stop offset="100%" stopColor="#9b87f5" />
           </linearGradient>
-          <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#7B61FF" />
+          <linearGradient id="neon-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#9b87f5" />
             <stop offset="100%" stopColor="#FF00FF" />
           </linearGradient>
         </defs>
