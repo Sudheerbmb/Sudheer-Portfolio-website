@@ -2,28 +2,27 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Github, ArrowRight, CalendarDays } from 'lucide-react';
-import { 
-  FaPython, FaJava, FaAws, FaDocker, FaNodeJs, FaReact, FaFigma, FaBrain, FaDatabase, FaGitAlt, 
-  FaMicrosoft, FaGoogle, FaExclamationTriangle, FaBolt, FaChartBar, FaCloud, FaStream, FaCode,
-  FaMicrochip, FaRobot, FaMicrophone, FaLayerGroup, FaFilePdf, FaCalculator, FaNetworkWired,
-  FaChartPie, FaChartLine, FaDraftingCompass, FaSitemap, FaPlug, FaRunning, FaStar, FaLink
+import {
+  FaPython, FaJava, FaAws, FaDocker, FaNodeJs, FaReact, FaFigma, FaBrain, FaDatabase, FaGitAlt,
+  FaCode, FaMicrochip, FaFilePdf, FaCalculator, FaChartLine, FaDraftingCompass, FaSitemap, FaRunning,
+  FaStar, FaPlug, FaNetworkWired, FaChartPie, FaChartBar
 } from 'react-icons/fa';
-import { 
+import {
   SiPostgresql, SiApacheairflow, SiSpringboot, SiFlask,
   SiFastapi, SiPytorch, SiTensorflow, SiOpencv, SiSpacy,
   SiPandas, SiScikitlearn, SiMongodb,
   SiSnowflake, SiDbt, SiApachekafka, SiRedis, SiSupabase,
   SiTailwindcss, SiJavascript, SiTypescript, SiMeta, SiGooglegemini,
-  SiOpenai, SiAnthropic, SiHuggingface, SiStreamlit, SiApachespark,
+  SiOpenai, SiAnthropic, SiHuggingface, SiApachespark,
   SiMysql, SiSqlite, SiNumpy, SiScipy, SiTableau, SiHtml5, SiCss3, SiExpress,
-  SiSocketdotio, SiDatabricks, SiFfmpeg, SiAmazonec2, SiPostman, SiMicrosoftpowerbi,
-  SiLangchain
+  SiSocketdotio, SiDatabricks, SiFfmpeg, SiAmazonec2, SiLangchain
 } from 'react-icons/si';
-import { VscAzure, VscTerminal, VscWindow } from 'react-icons/vsc';
+import { VscAzure, VscWindow } from 'react-icons/vsc';
+import { projects, Project } from '@/data/portfolio';
 
 const getTechIcon = (tech: string) => {
   const t = tech.toLowerCase();
-  
+
   // AI / LLM / Data Science
   if (t.includes('gemini')) return <SiGooglegemini className="text-[#8E75FF]" />;
   if (t.includes('openai') || t.includes('gpt') || t.includes('whisper')) return <SiOpenai className="text-[#10a37f]" />;
@@ -35,7 +34,7 @@ const getTechIcon = (tech: string) => {
   if (t.includes('tensorflow')) return <SiTensorflow className="text-[#FF6F00]" />;
   if (t.includes('pytorch')) return <SiPytorch className="text-[#EE4C2C]" />;
   if (t.includes('opencv')) return <SiOpencv className="text-[#5C3EE8]" />;
-  if (t.includes('pandas')) return <SiPandasIcon className="text-[#150458]" />;
+  if (t.includes('pandas')) return <SiPandas className="text-[#150458]" />;
   if (t.includes('scikit')) return <SiScikitlearn className="text-[#F7931E]" />;
   if (t.includes('numpy')) return <SiNumpy className="text-[#013243]" />;
   if (t.includes('scipy')) return <SiScipy className="text-[#8CAAE6]" />;
@@ -58,7 +57,7 @@ const getTechIcon = (tech: string) => {
   if (t.includes('js') || t.includes('javascript')) return <SiJavascript className="text-[#F7DF1E]" />;
   if (t.includes('ts') || t.includes('typescript')) return <SiTypescript className="text-[#3178C6]" />;
   if (t.includes('tailwind')) return <SiTailwindcss className="text-[#06B6D4]" />;
-  
+
   // Cloud & DE
   if (t.includes('azure')) return <VscAzure className="text-[#0089D6]" />;
   if (t.includes('aws') || t.includes('bedrock')) return <FaAws className="text-[#FF9900]" />;
@@ -72,7 +71,7 @@ const getTechIcon = (tech: string) => {
   if (t.includes('spark') || t.includes('pyspark')) return <SiApachespark className="text-[#E25A1C]" />;
   if (t.includes('docker')) return <FaDocker className="text-[#2496ED]" />;
   if (t.includes('github') || t.includes('git')) return <FaGitAlt className="text-[#F05032]" />;
-  
+
   // Databases & Backend
   if (t.includes('postgres')) return <SiPostgresql className="text-[#336791]" />;
   if (t.includes('mongodb')) return <SiMongodb className="text-[#47A248]" />;
@@ -99,13 +98,11 @@ const getTechIcon = (tech: string) => {
   if (t.includes('integration')) return <FaPlug className="text-yellow-500" />;
   if (t.includes('tkinter') || t.includes('gui')) return <VscWindow className="text-blue-500" />;
   if (t.includes('surprise')) return <FaStar className="text-yellow-400" />;
-  
+
   return <FaCode className="text-foreground/40" />;
 };
 
-const SiPandasIcon = ({ className }: { className?: string }) => <SiPandas className={className} />;
-
-const ProjectCard = ({ project }: { project: any }) => {
+const ProjectCard = ({ project }: { project: Project }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const hasLongDescription = project.description.length > 100;
 
@@ -116,33 +113,34 @@ const ProjectCard = ({ project }: { project: any }) => {
           src={project.image}
           alt={project.title}
           className="w-full h-auto max-h-64 object-contain transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-[2px]">
           <div className="flex gap-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-             <a
-                href={project.links.github}
+            <a
+              href={project.links.github}
+              className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-primary hover:text-white transition-all duration-300 border border-white/10 shadow-xl"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="View Source"
+            >
+              <Github size={22} />
+            </a>
+            {project.links.demo !== '#' && (
+              <a
+                href={project.links.demo}
                 className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-primary hover:text-white transition-all duration-300 border border-white/10 shadow-xl"
                 target="_blank"
                 rel="noopener noreferrer"
-                title="View Source"
+                title="Live Demo"
               >
-                <Github size={22} />
+                <ExternalLink size={22} />
               </a>
-              {project.links.demo !== '#' && (
-                <a
-                  href={project.links.demo}
-                  className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-primary hover:text-white transition-all duration-300 border border-white/10 shadow-xl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Live Demo"
-                >
-                  <ExternalLink size={22} />
-                </a>
-              )}
+            )}
           </div>
         </div>
       </div>
-      
+
       <div className="p-6 flex flex-col flex-grow space-y-5">
         <div className="space-y-2">
           <div className="flex items-center justify-between gap-3">
@@ -164,7 +162,7 @@ const ProjectCard = ({ project }: { project: any }) => {
             {project.description}
           </p>
           {hasLongDescription && (
-            <button 
+            <button
               onClick={() => setIsExpanded(!isExpanded)}
               className="text-primary hover:text-primary/80 text-xs font-bold mt-2 flex items-center gap-1.5 transition-all duration-300 group/btn"
             >
@@ -198,207 +196,8 @@ const Projects = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [showAll, setShowAll] = useState(false);
 
-  const projects = [
-    {
-      id: 15,
-      title: 'Insight — AI Interview Practice Partner',
-      description:
-        'Flask web app for role-based mock interviews powered by a multi-agent LLM loop (profiler + grader + interviewer + feedback) with live grading and coding round UI. practice with adaptive questions, scoring, and a final feedback report.',
-      category: 'AI/ML',
-      tags: ['Flask', 'Groq API', 'Multi-agent LLM', 'Python', 'Web Speech API', 'Redis', 'ChromaDB'],
-      image: '/Screenshot (270).png',
-      timeframe: 'Apr 2025',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/Interview_Agent',
-      },
-    },
-    {
-      id: 14,
-      title: 'AdmitGuard: AI Admissions Governance',
-      description:
-        'A distributed framework for high-integrity admissions, leveraging edge-validation, multi-stage AI reasoning, and latent semantic search to prevent identity spoofing. incorporates Google OAuth, Redis caching, Sentry tracking, and Xenova embeddings.',
-      category: 'AI/ML',
-      tags: ['Node.js', 'Express', 'React Native', 'Supabase', 'PostgreSQL', 'Groq', 'Socket.io', 'Google OAuth', 'Redis', 'Sentry', 'Xenova'],
-      image: '/Screenshot (269).png',
-      timeframe: 'Apr 2025',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/AdmitGuard',
-      },
-    },
-    {
-      id: 12,
-      title: 'Azure-HospitalFlow-Automated-Pipeline',
-      description:
-        'End-to-end real-time data engineering pipeline for healthcare, analyzing patient flow across hospital departments using Azure Event Hub, Databricks PySpark, and Azure Synapse.',
-      category: 'DE',
-      tags: ['Azure', 'PySpark', 'Azure Data Factory', 'Azure Synapse', 'Python', 'Databricks', 'Git'],
-      image: '/Azure.png',
-      timeframe: 'Feb 2025',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/Azure-Hospital-Pipeline',
-      },
-    },
-    {
-      id: 11,
-      title: 'Real-Time Stocks Market Data Pipeline',
-      description:
-        'End-to-end real-time pipeline: Kafka streaming → Airflow orchestration → Snowflake + DBT transforms → Power BI analytics.',
-      category: 'DE',
-      tags: ['Snowflake', 'DBT', 'Apache Airflow', 'Apache Kafka', 'Python', 'Docker', 'Power BI'],
-      image: '/pipeline.jpeg',
-      timeframe: 'Oct 2025',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/Snowflake_Stockmarket',
-      },
-    },
-    {
-      id: 6,
-      title: 'LexEcho:Audio Transcription and Summarization Web App',
-      description:
-        'Flask web app that transcribes M4A audio files using Whisper, summarizes content with Gemini API, and extracts key topics.',
-      category: 'AI/ML',
-      tags: ['Flask', 'Whisper', 'Gemini API', 'FFmpeg', 'NLTK', 'Python'],
-      image: '/echo.png',
-      timeframe: 'Feb 2025',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/LexEcho',
-      },
-    },
-    {
-      id: 5,
-      title: 'Medical Chatbot using Flask and Groq API',
-      description:
-        'Flask-based chatbot that responds to medical-related queries using the Groq API with medical keyword filtering.',
-      category: 'AI/ML',
-      tags: ['Flask', 'Groq API', 'Langchain', 'Python', 'Web Interface'],
-      image: '/bot.png',
-      timeframe: 'July 2024',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/Medical-ChatBot',
-      },
-    },
-    {
-      id: 4,
-      title: 'Weather ETL Pipeline with Apache Airflow',
-      description:
-        'ETL pipeline using Apache Airflow to fetch, process, and store weather data from Open-Meteo API into PostgreSQL.',
-      category: 'DE',
-      tags: ['Apache Airflow', 'ETL', 'PostgreSQL', 'Python', 'API Integration'],
-      image: '/pipe.jpg',
-      timeframe: 'Mar 2025',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/airflow-weather-pipeline',
-      },
-    },
-    {
-      id: 1,
-      title: 'MCQ Generator with Flask and AWS Bedrock',
-      description:
-        'Flask-based MCQ Generator supporting PDF, DOCX, and TXT formats, leveraging AWS Bedrock (Llama 3-8B LLM).',
-      category: 'AI/ML',
-      tags: ['Flask', 'AWS Bedrock', 'EC2', 'FPDF', 'HTML', 'CSS', 'JS'],
-      image: '/mcc.png',
-      timeframe: 'Feb 2025',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/EduQuizAI',
-      },
-    },
-    {
-      id: 7,
-      title: 'Groq Code Forge: Python Code Optimizer',
-      description:
-        'Web application that optimizes Python code using Groq API, providing complexity analysis and detailed explanations.',
-      category: 'AI/ML',
-      tags: ['Flask', 'Groq API', 'Langchain', 'Python', 'Code Optimization'],
-      image: '/codeopt1.png',
-      timeframe: 'Apr 2025',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/CodeOptimizer',
-      },
-    },
-    {
-      id: 8,
-      title: 'Movie Recommendation System',
-      description:
-        'Flask-based recommendation system using Collaborative Filtering (SVD) and Content-Based Filtering (TF-IDF with cosine similarity).',
-      category: 'AI/ML',
-      tags: ['Flask', 'SVD', 'TF-IDF', 'Scikit-learn', 'Surprise', 'Python'],
-      image: '/mv.jpg',
-      timeframe: 'Dec 2024',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/Movie-Recommendation-System',
-      },
-    },
-    {
-      id: 2,
-      title: 'Breast Cancer Detection System',
-      description:
-        'Machine learning-based breast cancer classification system using SVM, Linear Regression, and Random Forest.',
-      category: 'AI/ML',
-      tags: ['SVM', 'Random Forest', 'XGBoost', 'tkinter', 'Python'],
-      image: '/bcc.png',
-      timeframe: 'Oct 2023',
-      links: {
-        demo: 'https://youtu.be/ZRLmUZ4y8EQ?feature=shared',
-        github: '#',
-      },
-    },
-    {
-      id: 3,
-      title: 'On Your Own Hotel Booking Analysis',
-      description:
-        'SQL-based project analyzing customer bookings, hotel details, and payment transactions.',
-      category: 'Data Science',
-      tags: ['SQL', 'ER Modeling', 'Data Analysis'],
-      image: '/sqq.webp',
-      timeframe: 'Dec 2023',
-      links: {
-        demo: 'https://www.linkedin.com/posts/sudheer-kumar-thati_oyo-activity-7058820058365501440-EjDY?utm_source=share&utm_medium=member_android&rcm=ACoAAD22K6MBpe4xT0yI0p1klFV8dXo5fzPWbg4',
-        github: '#',
-      },
-    },
-    {
-      id: 10,
-      title: 'Hospital Management System API',
-      description:
-        'A comprehensive Spring Boot API for hospital management, featuring CRUD operations for patients, doctors, appointments, departments, and staff with H2 database integration.',
-      category: 'Web',
-      tags: ['Java', 'Spring Boot', 'Spring Web', 'Spring Data JPA', 'H2 Database', 'RESTful API'],
-      image: '/sb.png',
-      timeframe: 'Nov 2024',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/Hospital_Management_System',
-      },
-    },
-    {
-      id: 13,
-      title: 'Education Institution UI Design',
-      description:
-        'Modern and responsive user interface for an educational institution designed in Figma, focusing on intuitive navigation, accessibility, and visual consistency.',
-      category: 'Web',
-      tags: ['Figma', 'UI/UX Design', 'Prototyping', 'Education'],
-      image: '/Screenshot (42)-Picsart-AiImageEnhancer.png',
-      timeframe: 'Nov 2025',
-      links: {
-        demo: '#',
-        github: 'https://github.com/Sudheerbmb/Educational_Website_UI',
-      },
-    },
-  ];
-
-  const filteredProjects = activeCategory === 'All' 
-    ? projects 
+  const filteredProjects = activeCategory === 'All'
+    ? projects
     : projects.filter(project => project.category === activeCategory);
 
   const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 6);
