@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { FileText } from 'lucide-react';
 
@@ -8,7 +9,13 @@ const About = () => {
       <div className="container max-w-6xl">
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-center">
           {/* Image */}
-          <div className="w-full md:w-5/12">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-full md:w-5/12"
+          >
             <div className="relative">
               <div className="rounded-xl overflow-hidden neon-border bg-black/20 flex items-center justify-center aspect-[4/5] relative">
                 {/* Blurred background for profile to fill container without cropping */}
@@ -28,10 +35,16 @@ const About = () => {
               <div className="absolute -top-6 -right-6 w-24 h-24 rounded-lg border border-neon-purple/30 glass-card -z-10"></div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-full border border-neon-cyan/30 glass-card -z-10"></div>
             </div>
-          </div>
+          </motion.div>
           
           {/* Content */}
-          <div className="w-full md:w-7/12 space-y-6">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="w-full md:w-7/12 space-y-6"
+          >
             <div>
               <h2 className="text-sm uppercase tracking-wider text-accent mb-2">
                 About Me
@@ -79,7 +92,7 @@ const About = () => {
                 </a>
               </Button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

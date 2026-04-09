@@ -205,7 +205,13 @@ const Projects = () => {
   return (
     <section id="projects" className="section-padding bg-gradient-to-b from-background/95 to-background">
       <div className="container max-w-6xl">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Showcase</h2>
           <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white">
             <span className="">My Project</span><span className="text-accent">s</span>
@@ -214,7 +220,7 @@ const Projects = () => {
             Here are some of my recent projects showcasing my skills and expertise
             in different areas of development.
           </p>
-        </div>
+        </motion.div>
 
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((category) => (

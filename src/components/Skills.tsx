@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { 
   projects, skillCategories, frameworks, deepLearningSkills, softSkills 
@@ -67,7 +68,13 @@ const Skills = () => {
   return (
     <section id="skills" className="section-padding bg-background/95">
       <div className="container max-w-6xl">
-        <div className="text-center mb-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-10"
+        >
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Expertise</h2>
           <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold">
             <span className="text-white">My </span>
@@ -77,7 +84,7 @@ const Skills = () => {
             A comprehensive overview of my technical expertise and professional capabilities.
             Hover over skills to see projects where they were used.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* Technical Skills Grid */}

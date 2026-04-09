@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { CalendarDays, Briefcase, GraduationCap, MapPin } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
@@ -8,7 +9,13 @@ const Experience = () => {
   return (
     <section id="experience" className="section-padding bg-background">
       <div className="container max-w-6xl">
-        <div className="text-center mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Journey</h2>
           <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold">
             <span className="text-gradient">Experience & Education</span>
@@ -17,7 +24,7 @@ const Experience = () => {
             My professional experience, educational background, and certifications
             that have shaped my career in technology.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Work Experience */}
