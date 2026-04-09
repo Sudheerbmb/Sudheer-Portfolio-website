@@ -3,51 +3,103 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Github, ArrowRight, CalendarDays } from 'lucide-react';
 import { 
-  FaPython, FaJava, FaAws, FaDocker, FaNodeJs, FaReact, FaFigma, FaBrain, FaDatabase, FaGitAlt, FaMicrosoft, FaGoogle, FaExclamationTriangle, FaBolt, FaChartBar, FaCloud, FaStream
+  FaPython, FaJava, FaAws, FaDocker, FaNodeJs, FaReact, FaFigma, FaBrain, FaDatabase, FaGitAlt, 
+  FaMicrosoft, FaGoogle, FaExclamationTriangle, FaBolt, FaChartBar, FaCloud, FaStream, FaCode,
+  FaMicrochip, FaRobot, FaMicrophone, FaLayerGroup, FaFilePdf, FaCalculator, FaNetworkWired,
+  FaChartPie, FaChartLine, FaDraftingCompass, FaSitemap, FaPlugs, FaRunning, FaStar
 } from 'react-icons/fa';
 import { 
   SiPostgresql, SiApacheairflow, SiSpringboot, SiFlask,
   SiFastapi, SiPytorch, SiTensorflow, SiOpencv, SiSpacy,
-  SiPandas, SiScikitlearn, SiApache, SiMongodb,
+  SiPandas, SiScikitlearn, SiMongodb,
   SiSnowflake, SiDbt, SiApachekafka, SiRedis, SiSupabase,
-  SiTailwindcss, SiJavascript, SiTypescript
+  SiTailwindcss, SiJavascript, SiTypescript, SiMeta, SiGooglegemini,
+  SiOpenai, SiAnthropic, SiHuggingface, SiStreamlit, SiApachespark,
+  SiMysql, SiSqlite, SiNumpy, SiScipy, SiTableau, SiHtml5, SiCss3, SiExpress,
+  SiSocketdotio, SiDatabricks, SiFfmpeg, SiAmazonec2, SiPostman, SiMicrosoftpowerbi
 } from 'react-icons/si';
+import { VscAzure, VscTerminal, VscWindow } from 'react-icons/vsc';
 
-// Extremely safe mapping to avoid build failures
 const getTechIcon = (tech: string) => {
   const t = tech.toLowerCase();
   
-  // High-reliability Si Icons
+  // AI / LLM / Data Science
+  if (t.includes('gemini')) return <SiGooglegemini className="text-[#8E75FF]" />;
+  if (t.includes('openai') || t.includes('gpt') || t.includes('whisper')) return <SiOpenai className="text-[#10a37f]" />;
+  if (t.includes('anthropic') || t.includes('claude')) return <SiAnthropic className="text-[#D97757]" />;
+  if (t.includes('llama') || t.includes('meta')) return <SiMeta className="text-[#0668E1]" />;
+  if (t.includes('hugging') || t.includes('face')) return <SiHuggingface className="text-[#FFD21E]" />;
+  if (t.includes('groq')) return <FaMicrochip className="text-[#F26522]" />;
+  if (t.includes('langchain')) return <FaRobot className="text-[#121212] dark:text-white" />;
+  if (t.includes('tensorflow')) return <SiTensorflow className="text-[#FF6F00]" />;
+  if (t.includes('pytorch')) return <SiPytorch className="text-[#EE4C2C]" />;
+  if (t.includes('opencv')) return <SiOpencv className="text-[#5C3EE8]" />;
+  if (t.includes('pandas')) return <SiPandas className="text-[#150458]" />;
+  if (t.includes('scikit')) return <SiScikitlearn className="text-[#F7931E]" />;
+  if (t.includes('numpy')) return <SiNumpy className="text-[#013243]" />;
+  if (t.includes('scipy')) return <SiScipy className="text-[#8CAAE6]" />;
+  if (t.includes('spacy')) return <SiSpacy className="text-[#09A3D5]" />;
+  if (t.includes('nlp') || t.includes('nltk') || t.includes('llm') || t.includes('reasoning')) return <FaBrain className="text-[#FF6B6B]" />;
+  if (t.includes('xgboost') || t.includes('random forest') || t.includes('svm') || t.includes('regression')) return <FaChartLine className="text-[#FFD700]" />;
+  if (t.includes('svd') || t.includes('tfidf') || t.includes('tf-idf') || t.includes('cosine')) return <FaCalculator className="text-gray-400" />;
+
+  // Frameworks & Languages
   if (t.includes('python')) return <FaPython className="text-[#3776AB]" />;
   if (t.includes('flask')) return <SiFlask className="text-white opacity-80" />;
+  if (t.includes('fastapi')) return <SiFastapi className="text-[#05998b]" />;
+  if (t.includes('spring') || t.includes('boot') || t.includes('spring web') || t.includes('spring data')) return <SiSpringboot className="text-[#6DB33F]" />;
   if (t.includes('java')) return <FaJava className="text-[#007396]" />;
-  if (t.includes('aws')) return <FaAws className="text-[#FF9900]" />;
   if (t.includes('node')) return <FaNodeJs className="text-[#339933]" />;
+  if (t.includes('express')) return <SiExpress className="text-white opacity-80" />;
   if (t.includes('react')) return <FaReact className="text-[#61DAFB]" />;
-  if (t.includes('figma')) return <FaFigma className="text-[#F24E1E]" />;
+  if (t.includes('html')) return <SiHtml5 className="text-[#E34F26]" />;
+  if (t.includes('css')) return <SiCss3 className="text-[#1572B6]" />;
+  if (t.includes('js') || t.includes('javascript')) return <SiJavascript className="text-[#F7DF1E]" />;
+  if (t.includes('ts') || t.includes('typescript')) return <SiTypescript className="text-[#3178C6]" />;
+  if (t.includes('tailwind')) return <SiTailwindcss className="text-[#06B6D4]" />;
+  
+  // Cloud & DE
+  if (t.includes('azure')) return <VscAzure className="text-[#0089D6]" />;
+  if (t.includes('aws') || t.includes('bedrock')) return <FaAws className="text-[#FF9900]" />;
+  if (t.includes('ec2')) return <SiAmazonec2 className="text-[#FF9900]" />;
+  if (t.includes('google') || t.includes('cloud') || t.includes('oauth')) return <FaGoogle className="text-[#4285F4]" />;
+  if (t.includes('snowflake')) return <SiSnowflake className="text-[#29B5E8]" />;
+  if (t.includes('databricks')) return <SiDatabricks className="text-[#FF3621]" />;
+  if (t.includes('dbt')) return <SiDbt className="text-[#FF694B]" />;
+  if (t.includes('kafka')) return <SiApachekafka className="text-white opacity-80" />;
+  if (t.includes('airflow')) return <SiApacheairflow className="text-[#017CEE]" />;
+  if (t.includes('spark') || t.includes('pyspark')) return <SiApachespark className="text-[#E25A1C]" />;
+  if (t.includes('docker')) return <FaDocker className="text-[#2496ED]" />;
+  if (t.includes('github') || t.includes('git')) return <FaGitAlt className="text-[#F05032]" />;
+  
+  // Databases & Backend
   if (t.includes('postgres')) return <SiPostgresql className="text-[#336791]" />;
   if (t.includes('mongodb')) return <SiMongodb className="text-[#47A248]" />;
   if (t.includes('redis')) return <SiRedis className="text-[#DC382D]" />;
   if (t.includes('supabase')) return <SiSupabase className="text-[#3ECF8E]" />;
-  if (t.includes('docker')) return <FaDocker className="text-[#2496ED]" />;
-  if (t.includes('airflow')) return <SiApacheairflow className="text-[#017CEE]" />;
-  if (t.includes('tailwind')) return <SiTailwindcss className="text-[#06B6D4]" />;
-  if (t.includes('js') || t.includes('javascript')) return <SiJavascript className="text-[#F7DF1E]" />;
-  if (t.includes('ts') || t.includes('typescript')) return <SiTypescript className="text-[#3178C6]" />;
-  if (t.includes('git')) return <FaGitAlt className="text-[#F05032]" />;
+  if (t.includes('mysql')) return <SiMysql className="text-[#4479A1]" />;
+  if (t.includes('sqlite')) return <SiSqlite className="text-[#003B57]" />;
+  if (t.includes('socket')) return <SiSocketdotio className="text-white opacity-80" />;
+  if (t.includes('rest') || t.includes('api')) return <FaNetworkWired className="text-emerald-500" />;
+  if (t.includes('sql') || t.includes('db')) return <FaDatabase className="text-[#336791]" />;
+
+  // Analytics & Tools
+  if (t.includes('power bi')) return <FaChartBar className="text-[#F2C811]" />;
+  if (t.includes('tableau')) return <SiTableau className="text-[#E97627]" />;
+  if (t.includes('figma')) return <FaFigma className="text-[#F24E1E]" />;
+  if (t.includes('sentry')) return <FaExclamationTriangle className="text-[#362D59]" />;
+  if (t.includes('ffmpeg')) return <SiFfmpeg className="text-[#007800]" />;
+  if (t.includes('pdf') || t.includes('fpdf')) return <FaFilePdf className="text-red-500" />;
+  if (t.includes('ui/ux') || t.includes('design')) return <FaDraftingCompass className="text-purple-400" />;
+  if (t.includes('prototyping') || t.includes('education')) return <FaLayerGroup className="text-blue-400" />;
+  if (t.includes('data analysis')) return <FaChartPie className="text-orange-400" />;
+  if (t.includes('er model')) return <FaSitemap className="text-indigo-400" />;
+  if (t.includes('optimization')) return <FaRunning className="text-green-400" />;
+  if (t.includes('integration')) return <FaPlugs className="text-yellow-500" />;
+  if (t.includes('tkinter') || t.includes('gui')) return <VscWindow className="text-blue-500" />;
+  if (t.includes('surprise')) return <FaStar className="text-yellow-400" />;
   
-  // Safest fallbacks for icons often causes build issues in different library versions
-  if (t.includes('azure') || t.includes('microsoft')) return <FaMicrosoft className="text-[#0089D6]" />;
-  if (t.includes('google') || t.includes('oauth')) return <FaGoogle className="text-[#4285F4]" />;
-  if (t.includes('power bi') || t.includes('chart') || t.includes('analytics')) return <FaChartBar className="text-[#F2C811]" />;
-  if (t.includes('snowflake')) return <FaCloud className="text-[#29B5E8]" />;
-  if (t.includes('kafka') || t.includes('stream')) return <FaStream className="text-white opacity-80" />;
-  if (t.includes('socket')) return <FaBolt className="text-white opacity-80" />;
-  if (t.includes('sentry') || t.includes('bug') || t.includes('error')) return <FaExclamationTriangle className="text-[#362D59]" />;
-  if (t.includes('sql') || t.includes('db') || t.includes('dbt')) return <FaDatabase className="text-[#336791]" />;
-  if (t.includes('ai') || t.includes('llm') || t.includes('groq') || t.includes('llama') || t.includes('gemini') || t.includes('whisper')) return <FaBrain className="text-[#FF6B6B]" />;
-  
-  return null;
+  return <FaCode className="text-foreground/40" />;
 };
 
 const ProjectCard = ({ project }: { project: any }) => {
@@ -133,7 +185,20 @@ const ProjectCard = ({ project }: { project: any }) => {
             </Badge>
           ))}
           {!isExpanded && project.tags.length > 6 && (
-            <span className="text-[11px] text-foreground/30 self-center font-medium">+{project.tags.length - 6} more</span>
+            <button 
+              onClick={() => setIsExpanded(true)}
+              className="text-[11px] text-primary/60 hover:text-primary self-center font-medium transition-colors"
+            >
+              +{project.tags.length - 6} more
+            </button>
+          )}
+          {isExpanded && project.tags.length > 6 && (
+             <button 
+                onClick={() => setIsExpanded(false)}
+                className="text-[11px] text-primary/60 hover:text-primary self-center font-medium transition-colors"
+              >
+                show less
+              </button>
           )}
         </div>
       </div>
