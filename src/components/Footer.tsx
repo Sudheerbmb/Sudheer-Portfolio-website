@@ -173,8 +173,7 @@ const Footer = () => {
             </div>
 
             <p className="text-foreground/60 text-xs flex items-center">
-              Made with <Heart size={14} className="mx-1 heart-icon" fill="currentColor" /> 
-              &copy; {currentYear} Sudheer Kumar. All rights reserved.
+              &copy; {currentYear} Sudheer Kumar Portfolio. All rights reserved.
             </p>
           </div>
         </div>

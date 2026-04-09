@@ -266,8 +266,8 @@ const Navbar = () => {
         )}
       >
         <div className="container flex items-center justify-between">
-          <a href="#" className="flex items-center">
-            <FuturisticSymbol />
+          <a href="#" className="flex items-center gap-2">
+            <span className="text-xl font-bold tracking-tight text-gradient">Sudheer Kumar Portfolio</span>
           </a>
 
           {/* Desktop Navigation */}
