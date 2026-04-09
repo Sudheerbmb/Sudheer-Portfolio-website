@@ -207,8 +207,8 @@ const Projects = () => {
       <div className="container max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Showcase</h2>
-          <h3 className="text-3xl md:text-4xl font-extrabold">
-            <span className="text-gradient">My Projects</span>
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white">
+            <span className="">My Project</span><span className="text-accent">s</span>
           </h3>
           <p className="mt-4 text-foreground/70 max-w-3xl mx-auto">
             Here are some of my recent projects showcasing my skills and expertise

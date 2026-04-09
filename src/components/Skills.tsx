@@ -69,8 +69,9 @@ const Skills = () => {
       <div className="container max-w-7xl">
         <div className="text-center mb-10">
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Expertise</h2>
-          <h3 className="text-2xl md:text-3xl font-extrabold">
-            <span className="text-gradient">My Skills</span>
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold">
+            <span className="text-white">My </span>
+            <span className="text-accent">Skills</span>
           </h3>
           <p className="mt-3 text-foreground/70 max-w-3xl mx-auto text-sm">
             A comprehensive overview of my technical expertise and professional capabilities.
@@ -84,7 +85,7 @@ const Skills = () => {
             {skillCategories.map((category) => (
               <div key={category.title} className="glass-card rounded-xl p-5 interactive-card">
                 <h4 className="text-lg font-bold mb-4">{category.title}</h4>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                   {category.items.map((skill) => (
                     <SkillItem key={skill.name} skill={skill.name} icon={skill.icon} color={skill.color} />
                   ))}
@@ -98,7 +99,7 @@ const Skills = () => {
             {/* Frameworks */}
             <div className="glass-card rounded-xl p-5 interactive-card">
               <h4 className="text-lg font-semibold mb-4">Frameworks</h4>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                 {frameworks.map((framework) => (
                   <SkillItem key={framework.name} skill={framework.name} icon={framework.icon} color={framework.color} />
                 ))}

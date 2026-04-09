@@ -10,7 +10,7 @@ const Experience = () => {
       <div className="container max-w-7xl">
         <div className="text-center mb-12">
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Journey</h2>
-          <h3 className="text-3xl md:text-4xl font-extrabold">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold">
             <span className="text-gradient">Experience & Education</span>
           </h3>
           <p className="mt-4 text-foreground/70 max-w-3xl mx-auto">
@@ -40,7 +40,7 @@ const Experience = () => {
 
               <div className="space-y-6">
                 {workExperience.map((job) => (
-                  <div key={job.id} className="relative pl-12 group/item">
+                  <div key={job.id} className="relative pl-10 md:pl-12 group/item">
                     {/* Enhanced Timeline dot with futuristic design - Consistent with Education */}
                     <div className="absolute left-[16.5px] top-1/2 -translate-y-1/2 w-5 h-5 z-10 transition-transform duration-500 group-hover/item:scale-125">
                       <div className="absolute inset-0 rounded-full bg-background border-[3px] border-primary group-hover/item:border-secondary transition-colors duration-300"></div>
@@ -123,7 +123,7 @@ const Experience = () => {
 
               <div className="space-y-8">
                 {education.map((edu) => (
-                  <div key={edu.id} className="relative pl-12 group/item">
+                  <div key={edu.id} className="relative pl-10 md:pl-12 group/item">
                     {/* Enhanced Timeline dot with futuristic design */}
                     <div className="absolute left-[16.5px] top-1/2 -translate-y-1/2 w-5 h-5 z-10 transition-transform duration-500 group-hover/item:scale-125">
                       <div className="absolute inset-0 rounded-full bg-background border-[3px] border-primary group-hover/item:border-secondary transition-colors duration-300"></div>

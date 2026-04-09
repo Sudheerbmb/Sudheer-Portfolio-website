@@ -49,7 +49,7 @@ const Hero = () => {
         <div className="flex flex-col items-center text-center space-y-8 animate-fade-in">
           <p className="text-accent font-medium text-xl md:text-2xl">Hello, I'm</p>
           <motion.h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-bold flex flex-wrap justify-center gap-1"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black flex flex-wrap justify-center gap-1 leading-tight"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
@@ -83,8 +83,8 @@ const Hero = () => {
               </motion.span>
             ))}
           </motion.h1>
-          <h2 className="text-2xl md:text-3xl text-foreground/90 max-w-2xl">
-            I create <span className="text-neon-cyan">innovative</span> and <span className="text-neon-purple">impactful</span> digital experiences
+          <h2 className="text-xl sm:text-2xl md:text-3xl text-foreground/90 max-w-2xl font-semibold">
+            I create <span className="text-neon-cyan drop-shadow-[0_0_10px_rgba(51,195,240,0.5)]">innovative</span> and <span className="text-neon-purple drop-shadow-[0_0_10px_rgba(155,135,245,0.5)]">impactful</span> digital experiences
           </h2>
           <p className="text-foreground/70 max-w-2xl">
             Data scientist specializing in deriving actionable insights from complex data. Currently, I'm focused on building AI-driven solutions for real-world challenges.
