@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
-import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, useTransform, useSpring, AnimatePresence, useScroll } from 'framer-motion';
 import Resume from './Resume';
 
 const FuturisticSymbol = () => {
@@ -213,6 +213,7 @@ const FuturisticSymbol = () => {
 };
 
 const Navbar = () => {
+  const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -220,6 +221,22 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+      
+      // Scroll Spy logic
+      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'blog', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const height = element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
+            setActiveSection(section);
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -238,6 +255,13 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact' },
   ];
 
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
     <>
       <header
@@ -248,6 +272,10 @@ const Navbar = () => {
             : 'bg-transparent py-5'
         )}
       >
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-primary via-accent to-secondary origin-left z-50"
+          style={{ scaleX }}
+        />
         <div className="container flex items-center justify-between">
           <a href="#" className="flex items-center">
             <FuturisticSymbol />
@@ -259,9 +287,21 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors"
+                className={cn(
+                  "relative text-sm font-medium transition-all duration-300",
+                  activeSection === item.href.slice(1) 
+                    ? "text-primary scale-110" 
+                    : "text-foreground/80 hover:text-primary"
+                )}
               >
                 {item.name}
+                {activeSection === item.href.slice(1) && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary/80 rounded-full"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </a>
             ))}
             <Button 

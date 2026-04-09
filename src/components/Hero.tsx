@@ -93,16 +93,18 @@ const Hero = () => {
           {/* Social links */}
           <div className="flex items-center space-x-6 mt-12">
             {[
-              { icon: Github, href: "https://github.com/Sudheerbmb", color: "hover:text-neon-purple" },
-              { icon: Linkedin, href: "https://linkedin.com/in/sudheer-kumar-thati/", color: "hover:text-neon-blue" },
-              { icon: Twitter, href: "https://x.com/SudheerTruly/", color: "hover:text-neon-cyan" },
-              { icon: Mail, href: "mailto:sudheermsdvk@gmail.com", color: "hover:text-neon-orange" },
+              { icon: Github, href: "https://github.com/Sudheerbmb", color: "hover:text-neon-purple", label: "GitHub Profile" },
+              { icon: Linkedin, href: "https://linkedin.com/in/sudheer-kumar-thati/", color: "hover:text-neon-blue", label: "LinkedIn Profile" },
+              { icon: Twitter, href: "https://x.com/SudheerTruly/", color: "hover:text-neon-cyan", label: "Twitter Profile" },
+              { icon: Mail, href: "mailto:sudheermsdvk@gmail.com", color: "hover:text-neon-orange", label: "Send Email" },
             ].map((social, i) => (
               <motion.a
                 key={i}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={social.label}
+                title={social.label}
                 className={`text-foreground/80 ${social.color} transition-colors p-2`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
