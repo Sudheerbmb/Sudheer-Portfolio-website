@@ -10,21 +10,22 @@ const FuturisticSymbol = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const [isHovered, setIsHovered] = useState(false);
+  const { scrollYProgress } = useScroll();
 
-  const springConfig = { damping: 20, stiffness: 300 };
+  const springConfig = { damping: 30, stiffness: 400 };
   const springX = useSpring(mouseX, springConfig);
   const springY = useSpring(mouseY, springConfig);
 
-  const rotateX = useTransform(springY, [-100, 100], [45, -45]);
-  const rotateY = useTransform(springX, [-100, 100], [-45, 45]);
+  const rotateX = useTransform(springY, [-50, 50], [30, -30]);
+  const rotateY = useTransform(springX, [-50, 50], [-30, 30]);
+  const scrollRotation = useTransform(scrollYProgress, [0, 1], [0, 720]);
+  const scrollScale = useTransform(scrollYProgress, [0, 0.2, 1], [1, 1.1, 1]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
-    
     const rect = containerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    
     mouseX.set(x);
     mouseY.set(y);
   };
@@ -32,7 +33,7 @@ const FuturisticSymbol = () => {
   return (
     <motion.div
       ref={containerRef}
-      className="relative w-14 h-14 cursor-pointer"
+      className="relative w-12 h-12 md:w-14 md:h-14 cursor-pointer perspective-1000"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
@@ -40,174 +41,98 @@ const FuturisticSymbol = () => {
         mouseY.set(0);
         setIsHovered(false);
       }}
+      style={{ scale: scrollScale }}
     >
-      {/* Main 3D Container */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 preserve-3d"
         style={{
           rotateX,
           rotateY,
-          transformStyle: "preserve-3d",
-          transformPerspective: 1000,
+          rotateZ: scrollRotation,
         }}
       >
-        {/* Outer Hexagon */}
-        <motion.svg
-          className="absolute inset-0"
-          viewBox="0 0 100 100"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <motion.path
-            d="M50 0 L100 25 L100 75 L50 100 L0 75 L0 25 Z"
-            stroke="url(#gradient1)"
-            strokeWidth="2"
-            animate={{
-              strokeDasharray: ["0, 300", "300, 0"],
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-          <defs>
-            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#00F5FF" />
-              <stop offset="50%" stopColor="#FF00FF" />
-              <stop offset="100%" stopColor="#00F5FF" />
-            </linearGradient>
-          </defs>
-        </motion.svg>
-
-        {/* Inner Hexagon */}
-        <motion.svg
-          className="absolute inset-4"
-          viewBox="0 0 100 100"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <motion.path
-            d="M50 0 L100 25 L100 75 L50 100 L0 75 L0 25 Z"
-            stroke="url(#gradient2)"
-            strokeWidth="2"
-            animate={{
-              strokeDasharray: ["300, 0", "0, 300"],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-          <defs>
-            <linearGradient id="gradient2" x1="100%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#FF00FF" />
-              <stop offset="50%" stopColor="#00F5FF" />
-              <stop offset="100%" stopColor="#FF00FF" />
-            </linearGradient>
-          </defs>
-        </motion.svg>
-
-        {/* Center Symbol */}
+        {/* Outer Geometric Ring */}
         <motion.div
-          className="absolute inset-0 flex items-center justify-center"
+          className="absolute inset-0 border-2 border-primary/40 rounded-xl"
           animate={{
-            scale: [1, 1.1, 1],
+            rotate: [0, 360],
+            borderRadius: ["30%", "50%", "30%"],
           }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          <svg
-            className="w-6 h-6"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+        />
+
+        {/* Floating Hexagons */}
+        {[0, 1, 2].map((i) => (
+          <motion.svg
+            key={i}
+            className="absolute inset-0 w-full h-full opacity-70"
+            viewBox="0 0 100 100"
+            style={{ translateZ: i * 15 - 15 }}
           >
             <motion.path
-              d="M12 2L2 7L12 12L22 7L12 2Z"
-              fill="url(#gradient3)"
+              d="M50 5 L90 27.5 L90 72.5 L50 95 L10: 72.5 L10 27.5 Z"
+              stroke={i === 1 ? "url(#grad-blue)" : "url(#grad-purple)"}
+              strokeWidth="1.5"
+              fill="none"
               animate={{
-                scale: [1, 1.1, 1],
-                rotate: [0, 180, 360],
+                strokeDasharray: ["0, 300", "300, 0"],
+                opacity: [0.3, 0.8, 0.3],
               }}
               transition={{
-                duration: 8,
+                duration: 4 + i,
                 repeat: Infinity,
-                ease: "linear"
+                ease: "easeInOut",
               }}
             />
-            <defs>
-              <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00F5FF" />
-                <stop offset="100%" stopColor="#FF00FF" />
-              </linearGradient>
-            </defs>
-          </svg>
+          </motion.svg>
+        ))}
+
+        {/* Glowing Core */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center translate-z-10"
+          animate={{ scale: isHovered ? 1.2 : 1 }}
+        >
+          <div className="w-4 h-4 rounded-full bg-white shadow-[0_0_15px_#9b87f5,0_0_30px_#00F5FF] relative animate-pulse">
+            <div className="absolute inset-0 rounded-full bg-primary blur-sm"></div>
+          </div>
         </motion.div>
 
-        {/* Glowing Particles */}
+        {/* Orbital Particles */}
         <AnimatePresence>
           {isHovered && (
-            <>
+            <motion.div className="absolute inset-0">
               {[...Array(6)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-1 h-1 rounded-full"
-                  style={{
-                    left: `${Math.cos(i * Math.PI / 3) * 20 + 25}px`,
-                    top: `${Math.sin(i * Math.PI / 3) * 20 + 25}px`,
-                    background: `hsl(${i * 60}, 100%, 50%)`,
-                  }}
-                  initial={{ scale: 0, opacity: 0 }}
+                  className="absolute w-1 h-1 rounded-full bg-accent"
+                  initial={{ opacity: 0, scale: 0 }}
                   animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.5, 1, 0.5],
+                    opacity: [0, 1, 0],
+                    scale: [0, 1.5, 0],
+                    x: Math.cos(i * 60) * 30,
+                    y: Math.sin(i * 60) * 30,
                   }}
-                  exit={{ scale: 0, opacity: 0 }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: i * 0.2,
-                    ease: "easeInOut"
-                  }}
+                  transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.1 }}
                 />
               ))}
-            </>
+            </motion.div>
           )}
         </AnimatePresence>
       </motion.div>
 
-      {/* Ambient Glow */}
-      <motion.div
-        className="absolute inset-0 rounded-full blur-xl"
-        style={{
-          background: 'radial-gradient(circle at center, rgba(0,245,255,0.2), transparent 70%)',
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-
-      {/* Hover Effect */}
-      <motion.div
-        className="absolute inset-0 rounded-full"
-        style={{
-          background: 'radial-gradient(circle at center, rgba(255,0,255,0.1), transparent 70%)',
-        }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-      />
+      {/* SVG Definitions */}
+      <svg className="absolute w-0 h-0">
+        <defs>
+          <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#00F5FF" />
+            <stop offset="100%" stopColor="#7B61FF" />
+          </linearGradient>
+          <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#7B61FF" />
+            <stop offset="100%" stopColor="#FF00FF" />
+          </linearGradient>
+        </defs>
+      </svg>
     </motion.div>
   );
 };
@@ -266,8 +191,8 @@ const Navbar = () => {
         )}
       >
         <div className="container flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight text-gradient">Sudheer Kumar Portfolio</span>
+          <a href="#" className="flex items-center">
+            <FuturisticSymbol />
           </a>
 
           {/* Desktop Navigation */}
