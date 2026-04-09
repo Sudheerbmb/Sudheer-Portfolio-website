@@ -310,7 +310,7 @@ export const skillCategories = [
     title: "Programming Languages",
     items: [
       { name: 'Python', icon: FaPython, color: '#3776AB' },
-      { name: 'Java', icon: FaJava, color: '#007396' },
+      { name: 'Java', icon: FaJava, color: '#ED8B00' },
       { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
       { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
       { name: 'SQL', icon: FaDatabase, color: '#4479A1' },
