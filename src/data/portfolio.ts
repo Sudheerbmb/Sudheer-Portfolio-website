@@ -309,11 +309,11 @@ export const skillCategories = [
   {
     title: "Programming Languages",
     items: [
-      { name: 'Python', icon: FaPython, color: '#3776AB' },
+      { name: 'Python', icon: FaPython, color: '#FFD43B' },
       { name: 'Java', icon: FaJava, color: '#ED8B00' },
       { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
       { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
-      { name: 'SQL', icon: FaDatabase, color: '#4479A1' },
+      { name: 'SQL', icon: FaDatabase, color: '#00758F' },
       { name: 'C++', icon: SiCplusplus, color: '#00599C' },
     ]
   },
@@ -352,7 +352,7 @@ export const frameworks = [
 export const deepLearningSkills = [
   { name: 'PyTorch', icon: SiPytorch, color: '#EE4C2C' },
   { name: 'TensorFlow', icon: SiTensorflow, color: '#FF6F00' },
-  { name: 'Scikit-learn', icon: SiScikitlearn, color: '#F7931E' },
+  { name: 'Scikit-learn', icon: SiScikitlearn, color: '#F89939' },
   { name: 'Pandas', icon: SiPandas, color: '#150458' },
   { name: 'Langchain', icon: SiLangchain, color: '#ffffff' },
   { name: 'OpenCV', icon: SiOpencv, color: '#5C3EE8' },
