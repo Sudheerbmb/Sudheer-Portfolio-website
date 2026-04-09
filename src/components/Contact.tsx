@@ -83,10 +83,10 @@ const Contact = () => {
 
   return (
     <section id="contact" className="section-padding bg-background/95">
-      <div className="container">
+      <div className="container max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Get In Touch</h2>
-          <h3 className="text-3xl md:text-4xl font-bold">
+          <h3 className="text-3xl md:text-4xl font-extrabold">
             <span className="text-gradient">Contact Me</span>
           </h3>
           <p className="mt-4 text-foreground/70 max-w-3xl mx-auto">
@@ -98,7 +98,7 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div className="space-y-6">
             <div className="glass-card rounded-xl p-6 interactive-card h-full">
-              <h4 className="text-xl font-semibold mb-6">Contact Information</h4>
+              <h4 className="text-xl font-bold mb-6">Contact Information</h4>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <Mail className="text-primary" size={18} />
@@ -131,7 +131,7 @@ const Contact = () => {
 
           <div className="lg:col-span-1">
             <div className="glass-card rounded-xl p-6">
-              <h4 className="text-xl font-semibold mb-6">Send Me a Message</h4>
+              <h4 className="text-xl font-bold mb-6">Send Me a Message</h4>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                   <FormField

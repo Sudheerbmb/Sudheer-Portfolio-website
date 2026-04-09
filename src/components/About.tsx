@@ -5,7 +5,7 @@ import { FileText } from 'lucide-react';
 const About = () => {
   return (
     <section id="about" className="section-padding bg-gradient-to-b from-background to-background/95">
-      <div className="container">
+      <div className="container max-w-7xl">
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-center">
           {/* Image */}
           <div className="w-full md:w-5/12">
@@ -36,13 +36,13 @@ const About = () => {
               <h2 className="text-sm uppercase tracking-wider text-accent mb-2">
                 About Me
               </h2>
-              <h3 className="text-3xl md:text-4xl font-bold mb-6">
+              <h3 className="text-3xl md:text-4xl font-extrabold mb-6">
                 <span className="text-foreground">Passionate</span>{' '}
                 <span className="text-gradient">Data Scientist & AI Enthusiast</span>
               </h3>
             </div>
             
-            <div className="space-y-4 text-foreground/80">
+            <div className="space-y-4 text-foreground/70 text-sm leading-relaxed">
               <p>  
                 Data is more than numbers—it's a story waiting to be told. I decode patterns, harness AI and machine learning, and transform raw information into intelligence that drives innovation.  
               </p>

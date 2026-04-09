@@ -144,7 +144,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <div className="p-6 flex flex-col flex-grow space-y-5">
         <div className="space-y-2">
           <div className="flex items-center justify-between gap-3">
-            <Badge className="bg-primary/10 text-primary border border-primary/20 text-[10px] px-2 py-0.5 font-bold uppercase tracking-wider rounded-md">
+            <Badge className="bg-primary/10 text-primary border border-primary/20 text-[11px] px-2.5 py-1 font-extrabold uppercase tracking-wider rounded-md">
               {project.category}
             </Badge>
             <div className="flex items-center gap-1.5 text-xs text-foreground/50 font-medium">
@@ -177,12 +177,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <Badge
               key={tag}
               variant="outline"
-              className="bg-white/[0.03] border-white/10 text-foreground/80 text-[11px] px-2.5 py-1 flex items-center gap-1.5 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 rounded-lg group/tag"
+              className="bg-white/[0.03] border-white/10 text-foreground/90 text-xs px-3 py-1.5 flex items-center gap-2 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 rounded-lg group/tag"
             >
-              <span className="group-hover/tag:scale-125 transition-transform duration-300">
+              <span className="group-hover/tag:scale-125 transition-transform duration-300 text-base">
                 {getTechIcon(tag)}
               </span>
-              <span>{tag}</span>
+              <span className="font-semibold">{tag}</span>
             </Badge>
           ))}
         </div>
@@ -204,10 +204,10 @@ const Projects = () => {
 
   return (
     <section id="projects" className="section-padding bg-gradient-to-b from-background/95 to-background">
-      <div className="container">
+      <div className="container max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Showcase</h2>
-          <h3 className="text-3xl md:text-4xl font-bold">
+          <h3 className="text-3xl md:text-4xl font-extrabold">
             <span className="text-gradient">My Projects</span>
           </h3>
           <p className="mt-4 text-foreground/70 max-w-3xl mx-auto">

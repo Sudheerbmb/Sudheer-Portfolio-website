@@ -7,10 +7,10 @@ import { workExperience, education, certifications } from '@/data/portfolio';
 const Experience = () => {
   return (
     <section id="experience" className="section-padding bg-background">
-      <div className="container">
+      <div className="container max-w-7xl">
         <div className="text-center mb-12">
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Journey</h2>
-          <h3 className="text-3xl md:text-4xl font-bold">
+          <h3 className="text-3xl md:text-4xl font-extrabold">
             <span className="text-gradient">Experience & Education</span>
           </h3>
           <p className="mt-4 text-foreground/70 max-w-3xl mx-auto">
@@ -63,8 +63,8 @@ const Experience = () => {
                               />
                             </div>
                             <div>
-                              <h5 className="text-xl font-medium group-hover:text-primary transition-colors">{job.title}</h5>
-                              <p className="text-accent">{job.company}</p>
+                              <h5 className="text-xl font-bold group-hover:text-primary transition-colors">{job.title}</h5>
+                              <p className="text-accent font-semibold">{job.company}</p>
                             </div>
                           </div>
                           <Badge className="bg-accent/20 text-foreground/90 border border-accent/30 whitespace-nowrap">
@@ -145,8 +145,8 @@ const Experience = () => {
                             />
                           </div>
                           <div className="flex-1">
-                            <h5 className="text-lg font-medium group-hover:text-primary transition-colors">{edu.degree}</h5>
-                            <p className="text-accent">{edu.institution}</p>
+                            <h5 className="text-lg font-bold group-hover:text-primary transition-colors">{edu.degree}</h5>
+                            <p className="text-accent font-semibold">{edu.institution}</p>
                             <p className="text-foreground/70 text-sm mt-1">{edu.description}</p>
                             <div className="flex items-center gap-1 text-foreground/60 text-xs mt-1">
                               <MapPin size={12} />
@@ -210,8 +210,8 @@ const Experience = () => {
                         />
                       </div>
                       <div className="flex-1">
-                        <h5 className="text-lg font-semibold group-hover:text-primary transition-colors">{cert.name}</h5>
-                        <p className="text-accent font-medium">{cert.issuer}</p>
+                        <h5 className="text-lg font-bold group-hover:text-primary transition-colors">{cert.name}</h5>
+                        <p className="text-accent font-bold">{cert.issuer}</p>
                       </div>
                     </div>
                     <Badge className="bg-accent/20 text-foreground/90 border border-accent/30 whitespace-nowrap group-hover:bg-accent/30 transition-colors">
