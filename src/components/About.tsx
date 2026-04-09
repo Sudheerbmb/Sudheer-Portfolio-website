@@ -5,7 +5,7 @@ import { FileText } from 'lucide-react';
 const About = () => {
   return (
     <section id="about" className="section-padding bg-gradient-to-b from-background to-background/95">
-      <div className="container max-w-7xl">
+      <div className="container max-w-6xl">
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-center">
           {/* Image */}
           <div className="w-full md:w-5/12">

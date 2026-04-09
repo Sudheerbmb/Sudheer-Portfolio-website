@@ -204,7 +204,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="section-padding bg-gradient-to-b from-background/95 to-background">
-      <div className="container max-w-7xl">
+      <div className="container max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Showcase</h2>
           <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white">

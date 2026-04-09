@@ -7,7 +7,7 @@ import { workExperience, education, certifications } from '@/data/portfolio';
 const Experience = () => {
   return (
     <section id="experience" className="section-padding bg-background">
-      <div className="container max-w-7xl">
+      <div className="container max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Journey</h2>
           <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold">

@@ -66,7 +66,7 @@ const Skills = () => {
 
   return (
     <section id="skills" className="section-padding bg-background/95">
-      <div className="container max-w-7xl">
+      <div className="container max-w-6xl">
         <div className="text-center mb-10">
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Expertise</h2>
           <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold">

@@ -45,11 +45,11 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-radial from-transparent to-background opacity-85"></div>
       
       {/* Content */}
-      <div className="container relative z-10">
+      <div className="container max-w-6xl relative z-10">
         <div className="flex flex-col items-center text-center space-y-8 animate-fade-in">
           <p className="text-accent font-medium text-xl md:text-2xl">Hello, I'm</p>
           <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black flex flex-wrap justify-center gap-1 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black flex flex-wrap justify-center gap-1 leading-tight tracking-tighter"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}

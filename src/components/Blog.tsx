@@ -12,7 +12,7 @@ const Blog = () => {
 
   return (
     <section id="blog" className="section-padding bg-gradient-to-b from-background to-background/95">
-      <div className="container max-w-7xl">
+      <div className="container max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Latest Articles</h2>
           <h3 className="text-3xl md:text-4xl font-extrabold">
