@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Github, ArrowRight, CalendarDays } from 'lucide-react';
 import { getTechIcon } from '@/lib/icons';
+import { projects, Project } from '@/data/portfolio';
 
 const ProjectCard = ({ project }: { project: Project }) => {
   const [isExpanded, setIsExpanded] = useState(false);
