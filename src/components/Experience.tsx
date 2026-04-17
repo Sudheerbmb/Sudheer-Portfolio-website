@@ -5,6 +5,24 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { workExperience, education, certifications } from '@/data/portfolio';
 
+const TimelineLine = () => (
+  <div className="absolute left-6 top-0 bottom-0 w-[3px]">
+    <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary opacity-50"></div>
+    <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary blur-[2px] opacity-100"></div>
+    <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-secondary/20 to-primary/20 blur-[6px]"></div>
+    <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-transparent via-white to-transparent animate-timeline-pulse"></div>
+  </div>
+);
+
+const TimelineDot = () => (
+  <div className="absolute left-[16.5px] top-1/2 -translate-y-1/2 w-5 h-5 z-10 transition-transform duration-500 group-hover/item:scale-125">
+    <div className="absolute inset-0 rounded-full bg-background border-[3px] border-primary group-hover/item:border-secondary transition-colors duration-300"></div>
+    <div className="absolute inset-1.5 rounded-full bg-primary group-hover/item:bg-secondary transition-colors duration-300"></div>
+    <div className="absolute inset-0 rounded-full bg-primary/40 blur-md animate-pulse"></div>
+    <div className="absolute inset-[-4px] rounded-full border border-primary/20 opacity-0 group-hover/item:opacity-100 group-hover/item:animate-ping transition-opacity"></div>
+  </div>
+);
+
 const Experience = () => {
   return (
     <section id="experience" className="section-padding bg-background">
@@ -35,28 +53,12 @@ const Experience = () => {
             </div>
 
             <div className="relative">
-              {/* Enhanced Timeline line with gradient and glow - Mirrored from Education */}
-              <div className="absolute left-6 top-0 bottom-0 w-[3px]">
-                <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary opacity-50"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary blur-[2px] opacity-100"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-secondary/20 to-primary/20 blur-[6px]"></div>
-                
-                {/* Traveling Light Pulse */}
-                <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-transparent via-white to-transparent animate-timeline-pulse"></div>
-              </div>
+              <TimelineLine />
 
               <div className="space-y-6">
                 {workExperience.map((job) => (
                   <div key={job.id} className="relative pl-10 md:pl-12 group/item">
-                    {/* Enhanced Timeline dot with futuristic design - Consistent with Education */}
-                    <div className="absolute left-[16.5px] top-1/2 -translate-y-1/2 w-5 h-5 z-10 transition-transform duration-500 group-hover/item:scale-125">
-                      <div className="absolute inset-0 rounded-full bg-background border-[3px] border-primary group-hover/item:border-secondary transition-colors duration-300"></div>
-                      <div className="absolute inset-1.5 rounded-full bg-primary group-hover/item:bg-secondary transition-colors duration-300"></div>
-                      <div className="absolute inset-0 rounded-full bg-primary/40 blur-md animate-pulse"></div>
-                      
-                      {/* Interactive ping effect on hover */}
-                      <div className="absolute inset-[-4px] rounded-full border border-primary/20 opacity-0 group-hover/item:opacity-100 group-hover/item:animate-ping transition-opacity"></div>
-                    </div>
+                    <TimelineDot />
 
                     <div className="glass-card rounded-xl p-6 interactive-card group hover:border-primary/30 transition-all duration-300">
                       <div className="flex flex-col gap-3">
@@ -118,28 +120,12 @@ const Experience = () => {
             </div>
 
             <div className="relative">
-              {/* Enhanced Timeline line with gradient and glow */}
-              <div className="absolute left-6 top-0 bottom-0 w-[3px]">
-                <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary opacity-50"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-primary via-secondary to-primary blur-[2px] opacity-100"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-secondary/20 to-primary/20 blur-[6px]"></div>
-                
-                {/* Traveling Light Pulse */}
-                <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-transparent via-white to-transparent animate-timeline-pulse"></div>
-              </div>
+              <TimelineLine />
 
               <div className="space-y-8">
                 {education.map((edu) => (
                   <div key={edu.id} className="relative pl-10 md:pl-12 group/item">
-                    {/* Enhanced Timeline dot with futuristic design */}
-                    <div className="absolute left-[16.5px] top-1/2 -translate-y-1/2 w-5 h-5 z-10 transition-transform duration-500 group-hover/item:scale-125">
-                      <div className="absolute inset-0 rounded-full bg-background border-[3px] border-primary group-hover/item:border-secondary transition-colors duration-300"></div>
-                      <div className="absolute inset-1.5 rounded-full bg-primary group-hover/item:bg-secondary transition-colors duration-300"></div>
-                      <div className="absolute inset-0 rounded-full bg-primary/40 blur-md animate-pulse"></div>
-                      
-                      {/* Interactive ping effect on hover */}
-                      <div className="absolute inset-[-4px] rounded-full border border-primary/20 opacity-0 group-hover/item:opacity-100 group-hover/item:animate-ping transition-opacity"></div>
-                    </div>
+                    <TimelineDot />
 
                     <div className="glass-card rounded-xl p-6 interactive-card group hover:border-primary/30 transition-all duration-300">
                       <div className="flex justify-between items-start">
