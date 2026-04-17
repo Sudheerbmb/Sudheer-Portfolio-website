@@ -64,7 +64,7 @@ const Experience = () => {
                       <div className="flex flex-col gap-3">
                         <div className="flex justify-between items-start">
                           <div className="flex items-start gap-4">
-                            <div className="w-12 h-12 rounded-lg bg-white/5 border border-accent/20 overflow-hidden flex-shrink-0">
+                            <div className="w-12 h-12 rounded-lg bg-black/5 dark:bg-white/5 border border-accent/20 overflow-hidden flex-shrink-0">
                               <img
                                 src={job.logo}
                                 alt={job.company}
@@ -130,7 +130,7 @@ const Experience = () => {
                     <div className="glass-card rounded-xl p-6 interactive-card group hover:border-primary/30 transition-all duration-300">
                       <div className="flex justify-between items-start">
                         <div className="flex items-start gap-4">
-                          <div className="w-12 h-12 rounded-lg bg-white/5 border border-accent/20 overflow-hidden flex-shrink-0 group-hover:border-primary/30 transition-colors">
+                          <div className="w-12 h-12 rounded-lg bg-black/5 dark:bg-white/5 border border-accent/20 overflow-hidden flex-shrink-0 group-hover:border-primary/30 transition-colors">
                             <img
                               src={edu.logo}
                               alt={edu.institution}
@@ -195,7 +195,7 @@ const Experience = () => {
                 <div className="flex flex-col gap-4">
                   <div className="flex justify-between items-start">
                     <div className="flex items-start gap-4">
-                      <div className="w-14 h-14 rounded-lg bg-white/5 border border-accent/20 overflow-hidden flex-shrink-0 group-hover:border-accent/40 transition-colors">
+                      <div className="w-14 h-14 rounded-lg bg-black/5 dark:bg-white/5 border border-accent/20 overflow-hidden flex-shrink-0 group-hover:border-accent/40 transition-colors">
                         <img
                           src={cert.logo}
                           alt={cert.issuer}
@@ -213,7 +213,7 @@ const Experience = () => {
                   </div>
 
                   {/* Certificate Image */}
-                  <div className="relative aspect-[1.4/1] rounded-lg overflow-hidden border border-accent/20 group-hover:border-accent/30 transition-colors bg-white/5">
+                  <div className="relative aspect-[1.4/1] rounded-lg overflow-hidden border border-accent/20 group-hover:border-accent/30 transition-colors bg-black/5 dark:bg-white/5">
                     <img
                       src={cert.certificateImage}
                       alt={`${cert.name} Certificate`}

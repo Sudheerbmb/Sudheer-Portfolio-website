@@ -19,7 +19,7 @@ const Hero = () => {
       } else if (random < 0.25) {
         className = 'bg-neon-cyan/15 border border-neon-cyan/40 rounded-full shadow-md shadow-neon-cyan/15';
       } else {
-        className = random < 0.4 ? 'border border-white/15 rounded-md' : '';
+        className = random < 0.4 ? 'border border-black/5 dark:border-white/15 rounded-md' : '';
       }
       
       return { id: i, className };

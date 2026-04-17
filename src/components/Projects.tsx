@@ -12,8 +12,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const hasLongDescription = project.description.length > 100;
 
   return (
-    <div className="glass-card rounded-xl overflow-hidden interactive-card flex flex-col h-full bg-white/[0.02] border-white/5 hover:bg-white/[0.04] transition-all duration-500 shadow-2xl hover:shadow-primary/10">
-      <div className="relative group overflow-hidden bg-black/40 border-b border-white/5 flex items-center justify-center p-2 min-h-[220px]">
+    <div className="glass-card rounded-xl overflow-hidden interactive-card flex flex-col h-full bg-black/[0.02] dark:bg-white/[0.02] border-black/5 dark:border-white/5 hover:bg-black/[0.04] dark:hover:bg-white/[0.04] transition-all duration-500 shadow-2xl hover:shadow-primary/10">
+      <div className="relative group overflow-hidden bg-black/10 dark:bg-black/40 border-b border-black/5 dark:border-white/5 flex items-center justify-center p-2 min-h-[220px]">
         <img
           src={project.image}
           alt={project.title}
@@ -24,7 +24,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           <div className="flex gap-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
             <a
               href={project.links.github}
-              className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-primary hover:text-white transition-all duration-300 border border-white/10 shadow-xl"
+              className="p-3 bg-black/10 dark:bg-white/10 backdrop-blur-md rounded-full hover:bg-primary hover:text-white transition-all duration-300 border border-black/10 dark:border-white/10 shadow-xl"
               target="_blank"
               rel="noopener noreferrer"
               title="View Source"
@@ -34,7 +34,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             {project.links.demo !== '#' && (
               <a
                 href={project.links.demo}
-                className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-primary hover:text-white transition-all duration-300 border border-white/10 shadow-xl"
+                className="p-3 bg-black/10 dark:bg-white/10 backdrop-blur-md rounded-full hover:bg-primary hover:text-white transition-all duration-300 border border-black/10 dark:border-white/10 shadow-xl"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Live Demo"
@@ -57,7 +57,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               <span>{project.timeframe}</span>
             </div>
           </div>
-          <h4 className="text-xl font-bold leading-tight text-white/90 group-hover:text-primary transition-colors duration-300">
+          <h4 className="text-xl font-bold leading-tight text-foreground/90 dark:text-white/90 group-hover:text-primary transition-colors duration-300">
             {project.title}
           </h4>
         </div>
@@ -82,7 +82,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             <Badge
               key={tag}
               variant="outline"
-              className="bg-white/[0.03] border-white/10 text-foreground/90 text-xs px-3 py-1.5 flex items-center gap-2 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 rounded-lg group/tag"
+              className="bg-black/[0.03] dark:bg-white/[0.03] border-black/10 dark:border-white/10 text-foreground/90 text-xs px-3 py-1.5 flex items-center gap-2 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 rounded-lg group/tag"
             >
               <span className="group-hover/tag:scale-125 transition-transform duration-300 text-base">
                 {getTechIcon(tag)}
@@ -140,7 +140,7 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Showcase</h2>
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white">
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground dark:text-white">
             <span className="">My Project</span><span className="text-accent">s</span>
           </h3>
           <p className="mt-4 text-foreground/70 max-w-3xl mx-auto">

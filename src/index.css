@@ -81,7 +81,7 @@
 
 @layer components {
   .glass-card {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-lg;
+    @apply bg-black/5 dark:bg-white/5 backdrop-blur-xl border border-black/5 dark:border-white/10 shadow-lg;
   }
 
   .neon-border {
@@ -142,7 +142,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-white/10 rounded-full border-2 border-background;
+  @apply bg-black/20 dark:bg-white/10 rounded-full border-2 border-background;
 }
 
 ::-webkit-scrollbar-thumb:hover {

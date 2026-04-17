@@ -88,7 +88,7 @@ const Blog = () => {
                 </div>
 
                 {/* Read More Link */}
-                <div className="pt-5 mt-auto border-t border-white/5">
+                <div className="pt-5 mt-auto border-t border-black/5 dark:border-white/5">
                   <a
                     href={post.isVideo ? post.videoUrl : (post.blogUrl || `#blog-${post.id}`)}
                     className="text-accent hover:text-accent/80 flex items-center gap-2 transition-all font-bold text-sm group/link"

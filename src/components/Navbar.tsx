@@ -53,9 +53,8 @@ const FuturisticSymbol = () => {
           transformStyle: "preserve-3d",
         }}
       >
-        {/* Layer 1: Glassmorphic Hexagon Shell */}
         <motion.div 
-          className="absolute inset-0 bg-white/[0.03] backdrop-blur-[2px] border border-white/10 rounded-2xl shadow-2xl"
+          className="absolute inset-0 bg-black/[0.03] dark:bg-white/[0.03] backdrop-blur-[2px] border border-black/10 dark:border-white/10 rounded-2xl shadow-2xl"
           animate={{
             rotateY: [0, 360],
             scale: isHovered ? 1.05 : 1
@@ -105,7 +104,7 @@ const FuturisticSymbol = () => {
           style={{ translateZ: "60px" }}
         >
           <motion.div
-            className="relative w-8 h-8 flex items-center justify-center font-black text-xl text-white drop-shadow-[0_0_15px_rgba(155,135,245,0.8)]"
+            className="relative w-8 h-8 flex items-center justify-center font-black text-xl text-foreground dark:text-white drop-shadow-[0_0_15px_rgba(155,135,245,0.8)]"
             animate={{ scale: isHovered ? [1, 1.2, 1] : 1 }}
             transition={{ duration: 2, repeat: Infinity }}
           >
@@ -212,7 +211,7 @@ const Navbar = () => {
         className={cn(
           'fixed top-0 w-full z-50 transition-all duration-300',
           isScrolled
-            ? 'bg-black/60 backdrop-blur-lg border-b border-white/10 py-3'
+            ? 'bg-white/60 dark:bg-black/60 backdrop-blur-lg border-b border-black/10 dark:border-white/10 py-3'
             : 'bg-transparent py-5'
         )}
       >

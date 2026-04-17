@@ -77,7 +77,7 @@ const Skills = () => {
         >
           <h2 className="text-sm uppercase tracking-wider text-accent mb-2">Expertise</h2>
           <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold">
-            <span className="text-white">My </span>
+            <span className="text-foreground dark:text-white">My </span>
             <span className="text-accent">Skills</span>
           </h3>
           <p className="mt-3 text-foreground/70 max-w-3xl mx-auto text-sm">
