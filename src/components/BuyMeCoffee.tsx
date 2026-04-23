@@ -41,6 +41,15 @@ const BuyMeCoffee: React.FC<BuyMeCoffeeProps> = ({ isOpen, onClose }) => {
       return;
     }
 
+    if (!phone || phone.length < 10) {
+      toast({
+        title: "Phone Number Required",
+        description: "Please enter a valid 10-digit phone number.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -90,26 +99,26 @@ const BuyMeCoffee: React.FC<BuyMeCoffeeProps> = ({ isOpen, onClose }) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px] glass-card border-white/10 text-foreground">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2 text-2xl font-bold">
-            <Coffee className="text-[#FFDD00]" />
+      <DialogContent className="sm:max-w-[425px] w-[95vw] glass-card border-white/10 text-foreground max-h-[95vh] overflow-y-auto">
+        <DialogHeader className="space-y-1">
+          <DialogTitle className="flex items-center gap-2 text-xl font-bold">
+            <Coffee className="text-[#FFDD00]" size={20} />
             <span>Buy Me a Coffee</span>
           </DialogTitle>
-          <DialogDescription className="text-foreground/70">
-            If you like my work, consider supporting me with a small donation!
+          <DialogDescription className="text-foreground/70 text-xs">
+            Consider supporting me with a small donation!
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid gap-6 py-4">
-          <div className="space-y-3">
-            <Label className="text-sm font-medium">Select Amount (INR)</Label>
-            <div className="grid grid-cols-4 gap-2">
+        <div className="grid gap-4 py-2">
+          <div className="space-y-2">
+            <Label className="text-xs font-medium">Select Amount (INR)</Label>
+            <div className="grid grid-cols-4 gap-1.5">
               {presets.map((p) => (
                 <Button
                   key={p}
                   variant={amount === p && !customAmount ? "default" : "outline"}
-                  className={`font-bold transition-all ${
+                  className={`font-bold h-9 text-xs transition-all ${
                     amount === p && !customAmount 
                     ? "bg-primary text-primary-foreground" 
                     : "hover:border-primary/50"
@@ -125,11 +134,11 @@ const BuyMeCoffee: React.FC<BuyMeCoffeeProps> = ({ isOpen, onClose }) => {
             </div>
             <div className="relative">
               <div className="absolute left-3 top-1/2 -translate-y-1/2 text-foreground/50">
-                <IndianRupee size={14} />
+                <IndianRupee size={12} />
               </div>
               <Input
                 placeholder="Other Amount"
-                className="pl-8"
+                className="pl-8 h-9 text-xs"
                 value={customAmount}
                 onChange={(e) => {
                   setCustomAmount(e.target.value);
@@ -139,32 +148,35 @@ const BuyMeCoffee: React.FC<BuyMeCoffeeProps> = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Your Name (Optional)</Label>
+          <div className="space-y-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="name" className="text-xs">Your Name (Optional)</Label>
               <Input
                 id="name"
                 placeholder="John Doe"
+                className="h-9 text-xs"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email (Optional)</Label>
+            <div className="space-y-1.5">
+              <Label htmlFor="email" className="text-xs">Email (Optional)</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="john@example.com"
+                className="h-9 text-xs"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="phone">Phone Number (Optional)</Label>
+            <div className="space-y-1.5">
+              <Label htmlFor="phone" className="text-xs">Phone Number (Required)</Label>
               <Input
                 id="phone"
                 type="tel"
-                placeholder="9999999999"
+                placeholder="Enter 10-digit number"
+                className="h-9 text-xs"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
               />
@@ -172,9 +184,9 @@ const BuyMeCoffee: React.FC<BuyMeCoffeeProps> = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        <DialogFooter>
+        <DialogFooter className="pt-2">
           <Button 
-            className="w-full bg-[#FFDD00] text-black hover:bg-[#FFDD00]/90 font-bold h-12 text-lg shadow-lg"
+            className="w-full bg-[#FFDD00] text-black hover:bg-[#FFDD00]/90 font-bold h-11 text-base shadow-lg"
             onClick={handlePayment}
             disabled={isLoading}
           >
