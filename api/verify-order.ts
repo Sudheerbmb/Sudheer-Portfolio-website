@@ -15,29 +15,48 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const secretKey = process.env.CASHFREE_SECRET_KEY;
   const env = process.env.CASHFREE_ENV || 'SANDBOX';
 
-  const url = env === 'PRODUCTION' 
-    ? `https://api.cashfree.com/pg/orders/${order_id}` 
-    : `https://sandbox.cashfree.com/pg/orders/${order_id}`;
+  const baseUrl = env === 'PRODUCTION' 
+    ? 'https://api.cashfree.com/pg' 
+    : 'https://sandbox.cashfree.com/pg';
+
+  const headers = {
+    'x-client-id': appId!,
+    'x-client-secret': secretKey!,
+    'x-api-version': '2023-08-01',
+    'Content-Type': 'application/json',
+  };
 
   try {
-    const response = await fetch(url, {
+    // 1. Fetch Order Details
+    const orderResponse = await fetch(`${baseUrl}/orders/${order_id}`, {
       method: 'GET',
-      headers: {
-        'x-client-id': appId!,
-        'x-client-secret': secretKey!,
-        'x-api-version': '2023-08-01',
-        'Content-Type': 'application/json',
-      },
+      headers,
     });
 
-    const data = await response.json();
+    const orderData = await orderResponse.json();
 
-    if (!response.ok) {
-      console.error('Cashfree Error:', data);
-      return res.status(response.status).json(data);
+    if (!orderResponse.ok) {
+      console.error('Cashfree Order Error:', orderData);
+      return res.status(orderResponse.status).json(orderData);
     }
 
-    return res.status(200).json(data);
+    // 2. Fetch Payment Details for this Order
+    const paymentsResponse = await fetch(`${baseUrl}/orders/${order_id}/payments`, {
+      method: 'GET',
+      headers,
+    });
+
+    const paymentsData = await paymentsResponse.json();
+
+    // Combine order data with its latest successful payment
+    const latestPayment = Array.isArray(paymentsData) 
+      ? paymentsData.find(p => p.payment_status === 'SUCCESS') || paymentsData[0]
+      : null;
+
+    return res.status(200).json({
+      ...orderData,
+      payment_details: latestPayment
+    });
   } catch (error) {
     console.error('Order verification failed:', error);
     return res.status(500).json({ message: 'Internal Server Error' });

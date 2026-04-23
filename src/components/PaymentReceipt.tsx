@@ -8,7 +8,7 @@ import {
   DialogFooter
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { CheckCircle2, Download, Printer, Coffee, Calendar, Hash, User, Mail } from 'lucide-react';
+import { CheckCircle2, Download, Printer, Coffee, Calendar, Hash, User, Mail, CreditCard, Landmark, ShieldCheck } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
@@ -28,7 +28,7 @@ const PaymentReceipt: React.FC<PaymentReceiptProps> = ({ isOpen, onClose, orderD
       const canvas = await html2canvas(receiptRef.current, {
         scale: 2,
         useCORS: true,
-        backgroundColor: '#0a0a0a',
+        backgroundColor: '#ffffff',
       });
       
       const imgData = canvas.toDataURL('image/png');
@@ -46,63 +46,94 @@ const PaymentReceipt: React.FC<PaymentReceiptProps> = ({ isOpen, onClose, orderD
 
   if (!orderDetails) return null;
 
+  const payment = orderDetails.payment_details || {};
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[500px] glass-card border-white/10 text-foreground overflow-hidden p-0">
-        <div ref={receiptRef} className="p-8 space-y-6 bg-[#0a0a0a] text-white">
-          <div className="flex flex-col items-center text-center space-y-2">
-            <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mb-4">
-              <CheckCircle2 className="w-12 h-12 text-green-500" />
+      <DialogContent className="sm:max-w-[550px] glass-card border-white/10 text-foreground overflow-hidden p-0">
+        <div ref={receiptRef} className="p-8 space-y-6 bg-white text-slate-900">
+          <div className="flex justify-between items-start border-b border-slate-100 pb-6">
+            <div>
+              <h2 className="text-sm uppercase tracking-wider font-bold text-slate-500">Official Receipt</h2>
+              <h1 className="text-2xl font-black text-slate-900">Sudheer Portfolio</h1>
             </div>
-            <DialogTitle className="text-3xl font-bold">Payment Receipt</DialogTitle>
-            <p className="text-green-500 font-medium">Successfully Processed</p>
+            <div className="text-right">
+              <p className="text-xs font-bold text-slate-400 uppercase">Status</p>
+              <p className="text-green-600 font-bold flex items-center gap-1 justify-end">
+                <ShieldCheck size={14} /> PAID
+              </p>
+            </div>
           </div>
 
-          <div className="space-y-4 border-y border-white/10 py-8 my-6">
-            <div className="flex justify-between items-center">
-              <span className="text-white/60 flex items-center gap-2"><Hash size={16} /> Order ID</span>
-              <span className="font-mono text-sm font-medium">{orderDetails.order_id}</span>
+          <div className="grid grid-cols-2 gap-8 py-2">
+            <div className="space-y-1">
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Order Details</p>
+              <div className="space-y-2">
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-slate-500">Order ID</span>
+                  <span className="text-xs font-mono font-bold">{orderDetails.order_id}</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-slate-500">Date & Time</span>
+                  <span className="text-xs font-bold">
+                    {new Date(orderDetails.created_at).toLocaleString('en-IN', { 
+                      day: '2-digit', month: 'short', year: 'numeric',
+                      hour: '2-digit', minute: '2-digit', hour12: true 
+                    })}
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-white/60 flex items-center gap-2"><Coffee size={16} /> Support Amount</span>
-              <span className="text-2xl font-bold text-[#FFDD00]">₹{orderDetails.order_amount}</span>
+            <div className="space-y-1">
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-tighter">Payment Details</p>
+              <div className="space-y-2">
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-slate-500">Payment ID</span>
+                  <span className="text-xs font-mono font-bold">{payment.cf_payment_id || 'N/A'}</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-slate-500">Bank Reference (UTR)</span>
+                  <span className="text-xs font-mono font-bold">{payment.bank_reference || 'N/A'}</span>
+                </div>
+              </div>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-white/60 flex items-center gap-2"><Calendar size={16} /> Date</span>
-              <span className="font-medium">
-                {new Date(orderDetails.created_at).toLocaleDateString('en-IN', { 
-                  day: 'numeric', 
-                  month: 'long', 
-                  year: 'numeric',
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}
+          </div>
+
+          <div className="bg-slate-50 rounded-lg p-4 space-y-3">
+            <div className="flex justify-between items-center text-sm">
+              <span className="text-slate-500">Customer Name</span>
+              <span className="font-bold">{orderDetails.customer_details?.customer_name || 'Anonymous'}</span>
+            </div>
+            <div className="flex justify-between items-center text-sm">
+              <span className="text-slate-500">Customer Email</span>
+              <span className="font-bold">{orderDetails.customer_details?.customer_email || 'N/A'}</span>
+            </div>
+            <div className="flex justify-between items-center text-sm border-t border-slate-200 pt-3">
+              <span className="text-slate-500">Payment Method</span>
+              <span className="font-bold uppercase flex items-center gap-1">
+                {payment.payment_group === 'upi' ? 'UPI' : payment.payment_group || 'N/A'}
               </span>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-white/60 flex items-center gap-2"><User size={16} /> Name</span>
-              <span className="font-medium">{orderDetails.customer_details?.customer_name || 'Anonymous'}</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-white/60 flex items-center gap-2"><Mail size={16} /> Email</span>
-              <span className="font-medium">{orderDetails.customer_details?.customer_email || 'N/A'}</span>
-            </div>
           </div>
 
-          <div className="bg-white/5 rounded-xl p-4 text-center border border-white/5">
-            <p className="text-xs text-white/40 leading-relaxed">
-              Thank you for your generous contribution. This support helps me continue building open-source projects and sharing knowledge.
-            </p>
+          <div className="flex justify-between items-end pt-4 border-t border-slate-100">
+            <div>
+              <p className="text-[10px] font-bold text-slate-400 uppercase">Amount Paid</p>
+              <p className="text-3xl font-black text-slate-900">₹{orderDetails.order_amount.toFixed(2)}</p>
+            </div>
+            <div className="text-right text-[10px] text-slate-400">
+              <p>Processed by Cashfree Payments</p>
+              <p>Secure Transaction • 256-bit SSL</p>
+            </div>
           </div>
           
-          <div className="flex flex-col items-center gap-1 pt-4 opacity-50">
-            <p className="text-[10px] uppercase tracking-widest font-bold">Sudheer Portfolio</p>
-            <div className="h-px w-12 bg-white/20"></div>
+          <div className="text-center pt-6 opacity-30">
+            <p className="text-[8px] uppercase tracking-[0.2em] font-bold">This is an electronically generated receipt.</p>
           </div>
         </div>
 
         <DialogFooter className="flex sm:justify-between gap-3 p-6 pt-2">
-          <Button variant="outline" onClick={() => window.print()} className="flex-1 gap-2 border-white/10 hover:bg-white/5">
+          <Button variant="outline" onClick={() => window.print()} className="flex-1 gap-2 border-slate-200 hover:bg-slate-100 text-slate-900">
             <Printer size={18} /> Print
           </Button>
           <Button onClick={downloadPDF} className="flex-1 gap-2 bg-[#FFDD00] text-black hover:bg-[#FFDD00]/90 font-bold">
