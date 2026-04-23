@@ -134,12 +134,12 @@ const PaymentReceipt: React.FC<PaymentReceiptProps> = ({ isOpen, onClose, orderD
           </div>
         </div>
 
-        <DialogFooter className="flex sm:justify-between gap-2 p-4 pt-2 bg-slate-50 border-t border-slate-100">
-          <Button variant="outline" onClick={() => window.print()} className="flex-1 h-9 text-xs gap-2 border-slate-200 hover:bg-slate-100 text-slate-900">
-            <Printer size={14} /> Print
-          </Button>
-          <Button onClick={downloadPDF} className="flex-1 h-9 text-xs gap-2 bg-[#FFDD00] text-black hover:bg-[#FFDD00]/90 font-bold">
-            <Download size={14} /> Download PDF
+        <DialogFooter className="p-4 pt-2 bg-slate-50 border-t border-slate-100">
+          <Button 
+            onClick={downloadPDF} 
+            className="w-full h-11 text-sm gap-2 bg-[#FFDD00] text-black hover:bg-[#FFDD00]/90 font-bold shadow-md transition-all active:scale-[0.98]"
+          >
+            <Download size={18} /> Download Official Receipt (PDF)
           </Button>
         </DialogFooter>
       </DialogContent>
