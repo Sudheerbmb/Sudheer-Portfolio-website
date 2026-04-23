@@ -31,7 +31,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         customer_details: {
           customer_id: `cust_${Date.now()}`,
           customer_email: customerEmail || 'test@gmail.com',
-          customer_phone: customerPhone || '9999999999',
+          customer_phone: customerPhone || '', // Removed hardcoded default
           customer_name: customerName || 'Anonymous',
         },
         order_meta: {
