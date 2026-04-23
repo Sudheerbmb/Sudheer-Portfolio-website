@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Loader2, Coffee } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import {
   Form,
@@ -211,6 +211,18 @@ const Contact = () => {
                   </Button>
                 </form>
               </Form>
+
+              <div className="mt-8 pt-6 border-t border-white/10 flex flex-col items-center">
+                <p className="text-sm text-foreground/60 mb-4 italic">Want to support my work?</p>
+                <Button 
+                  variant="outline" 
+                  className="w-full sm:w-auto bg-[#FFDD00] text-black hover:bg-[#FFDD00]/90 border-none font-bold shadow-lg transition-all hover:scale-105 active:scale-95"
+                  onClick={() => window.open('#', '_blank')}
+                >
+                  <Coffee size={18} className="fill-current" />
+                  <span>Buy me a coffee</span>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
