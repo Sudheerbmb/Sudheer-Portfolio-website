@@ -15,6 +15,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
+import BuyMeCoffee from './BuyMeCoffee';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -26,6 +27,7 @@ const formSchema = z.object({
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isCoffeeModalOpen, setIsCoffeeModalOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -217,7 +219,7 @@ const Contact = () => {
                 <Button 
                   variant="outline" 
                   className="w-full sm:w-auto bg-[#FFDD00] text-black hover:bg-[#FFDD00]/90 border-none font-bold shadow-lg transition-all hover:scale-105 active:scale-95"
-                  onClick={() => window.open('#', '_blank')}
+                  onClick={() => setIsCoffeeModalOpen(true)}
                 >
                   <Coffee size={18} className="fill-current" />
                   <span>Buy me a coffee</span>
@@ -227,6 +229,11 @@ const Contact = () => {
           </div>
         </div>
       </div>
+
+      <BuyMeCoffee 
+        isOpen={isCoffeeModalOpen} 
+        onClose={() => setIsCoffeeModalOpen(false)} 
+      />
     </section>
   );
 };
