@@ -9,13 +9,13 @@ import Experience from '@/components/Experience';
 import Blog from '@/components/Blog';
 import Contact from '@/components/Contact';
 import { useToast } from '@/hooks/use-toast';
-import PaymentReceipt from '@/components/PaymentReceipt';
+import PaymentReceipt, { ReceiptData } from '@/components/PaymentReceipt';
 
 const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { toast } = useToast();
   const [isReceiptOpen, setIsReceiptOpen] = useState(false);
-  const [orderDetails, setOrderDetails] = useState<any>(null);
+  const [receiptData, setReceiptData] = useState<ReceiptData | null>(null);
 
   useEffect(() => {
     const orderId = searchParams.get('order_id');
@@ -26,11 +26,27 @@ const Index = () => {
           const data = await response.json();
 
           if (response.ok && data.order_status === 'PAID') {
-            setOrderDetails(data);
+            const payment = data.payment_details || {};
+
+            // Map Cashfree API response → unified ReceiptData
+            const receipt: ReceiptData = {
+              gateway: 'cashfree',
+              orderId: data.order_id,
+              paymentId: payment.cf_payment_id?.toString() || 'N/A',
+              bankReference: payment.bank_reference,
+              customerName: data.customer_details?.customer_name,
+              customerEmail: data.customer_details?.customer_email,
+              amount: data.order_amount,
+              currency: data.order_currency || 'INR',
+              paidAt: data.created_at,
+              paymentMethod: payment.payment_group === 'upi' ? 'UPI' : payment.payment_group,
+            };
+
+            setReceiptData(receipt);
             setIsReceiptOpen(true);
             toast({
-              title: "Support Received! ☕",
-              description: "Thank you so much for your support. It means a lot to me!",
+              title: 'Support Received! ☕',
+              description: 'Thank you so much for your support. It means a lot to me!',
               duration: 5000,
             });
           } else {
@@ -39,7 +55,6 @@ const Index = () => {
         } catch (error) {
           console.error('Error verifying order:', error);
         } finally {
-          // Remove the order_id from the URL without reloading
           const newParams = new URLSearchParams(searchParams);
           newParams.delete('order_id');
           setSearchParams(newParams, { replace: true });
@@ -59,11 +74,11 @@ const Index = () => {
       <Experience />
       <Blog />
       <Contact />
-      
-      <PaymentReceipt 
-        isOpen={isReceiptOpen} 
-        onClose={() => setIsReceiptOpen(false)} 
-        orderDetails={orderDetails} 
+
+      <PaymentReceipt
+        isOpen={isReceiptOpen}
+        onClose={() => setIsReceiptOpen(false)}
+        receiptData={receiptData}
       />
     </MainLayout>
   );
