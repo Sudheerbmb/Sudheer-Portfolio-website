@@ -28,15 +28,17 @@ interface BuyMeCoffeeProps {
 
 type Gateway = 'cashfree' | 'razorpay';
 
-// Dynamically load the Razorpay checkout script
-const loadRazorpayScript = (): Promise<boolean> => {
+// Check that Razorpay SDK (loaded via index.html) is available
+const checkRazorpayLoaded = (): Promise<boolean> => {
   return new Promise((resolve) => {
+    // Already available (loaded via <script> in index.html)
     if (window.Razorpay) return resolve(true);
-    const script = document.createElement('script');
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
-    document.body.appendChild(script);
+    // Poll briefly in case the page is still loading
+    let attempts = 0;
+    const interval = setInterval(() => {
+      if (window.Razorpay) { clearInterval(interval); resolve(true); }
+      else if (++attempts > 20) { clearInterval(interval); resolve(false); }
+    }, 100);
   });
 };
 
@@ -82,7 +84,7 @@ const BuyMeCoffee: React.FC<BuyMeCoffeeProps> = ({ isOpen, onClose }) => {
 
   // ── Razorpay ──────────────────────────────────────────────────────────────
   const handleRazorpayPayment = async (finalAmount: string) => {
-    const loaded = await loadRazorpayScript();
+    const loaded = await checkRazorpayLoaded();
     if (!loaded) throw new Error('Failed to load Razorpay SDK. Check your connection.');
 
     const response = await fetch('/api/razorpay-order', {
